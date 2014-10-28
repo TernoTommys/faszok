@@ -582,7 +582,7 @@ public OnPlayerText(playerid, text[]) //opt
 	    tmp = strtok(text, idx);
 		if(egyezik(tmp, "álnév") || egyezik(tmp, "alnev"))
 		{
-			if(!Munkarang(playerid, 2) && !FBIAlnev) return !Msg(playerid, "Access Denied. 2-es rang szükséges.");
+			//if(!Munkarang(playerid, 2) && !FBIAlnev) return !Msg(playerid, "Access Denied. 2-es rang szükséges.");
 			
 			new length = strlen(text);
 			while ((idx < length) && (text[idx] <= ' '))
@@ -639,25 +639,25 @@ public OnPlayerText(playerid, text[]) //opt
 			{
 				Msg(playerid, "Feloldottad a zárolást a számláról.");
 				//ormat(uzenet, "PDA Üzenet: %s feloldotta a zárolást egy bankszámláról(Számlaszám: %d)", PlayerName(playerid), bsz);
-				SendRadioMessageFormat(FRAKCIO_FBI, Pink, "PDA Üzenet: %s feloldotta a zárolást egy bankszámláról(Számlaszám: %d)", ICPlayerName(playerid), bsz);
+				SendRadioMessageFormat(FRAKCIO_CIA, Pink, "PDA Üzenet: %s feloldotta a zárolást egy bankszámláról(Számlaszám: %d)", ICPlayerName(playerid), bsz);
 				PlayerInfo[player][pZarolva] = 0;
-				Msg(player, "Az FBI feloldotta a zárolást a számládról.");
+				Msg(player, "A CIA feloldotta a zárolást a számládról.");
 				return 0;
 			}
 			if(PlayerInfo[player][pZarolva] == 0)
 			{
 				Msg(playerid, "Lezároltad a számlát.");
 				//Format(uzenet, "PDA Üzenet: %s lezárt egy számlát(Számlaszám: %d)", PlayerName(playerid), bsz);
-				SendRadioMessageFormat(FRAKCIO_FBI, Pink, "PDA Üzenet: %s lezárt egy számlát(Számlaszám: %d)", ICPlayerName(playerid), bsz);
+				SendRadioMessageFormat(FRAKCIO_CIA, Pink, "PDA Üzenet: %s lezárt egy számlát(Számlaszám: %d)", ICPlayerName(playerid), bsz);
 				PlayerInfo[player][pZarolva] = 1;
-				Msg(player, "Az FBI lezárolta a számlád.");
+				Msg(player, "A CIA lezárolta a számlád.");
 				return 0;
 			}
 		}
 		else if(egyezik(tmp, "beépülés") || egyezik(tmp, "beepules"))
 		{
 			tmp = strtok(text, idx);
-			if(!Munkarang(playerid, 3) && !FBIBeepules) return !Msg(playerid, "Access Denied. 3as rang szükséges.");
+			//if(!Munkarang(playerid, 3) && !FBIBeepules) return !Msg(playerid, "Access Denied. 3as rang szükséges.");
 			if(!strlen(tmp)) return !Msg(playerid, "beépülés [ruha]");
 			new ruha = strval(tmp);
 			new kocsi = GetClosestVehicle(playerid);
@@ -667,10 +667,10 @@ public OnPlayerText(playerid, text[]) //opt
 			SendClientMessage(playerid, Pink, "Beépülés Sikeres.");
 			//new uzi[128];
 			//Format(uzi, "PDA Üzenet: %s felvett egy álruhát.", PlayerName(playerid));
-			SendRadioMessageFormat(FRAKCIO_FBI, Pink, "PDA Üzenet: %s felvett egy álruhát.", ICPlayerName(playerid));
+			SendRadioMessageFormat(FRAKCIO_CIA, Pink, "Laptop Üzenet: %s felvett egy álruhát.", ICPlayerName(playerid));
 			return 0;
 		}
-		else if(egyezik(tmp, "deaktiválás") || egyezik(tmp, "deaktivalas"))
+		/*else if(egyezik(tmp, "deaktiválás") || egyezik(tmp, "deaktivalas"))
 		{
 			if(Fbibelepes != 1 && Fbibelepes != 3) return !Msg(playerid, "Nem volt Behatolás/ A rendszer nincs Aktiválva.");
 			Fbibelepes = 0;
@@ -694,16 +694,16 @@ public OnPlayerText(playerid, text[]) //opt
 			Fbibelepes = 3;
 			Msg(playerid, "System Activated");
 			return 0;
-		}
+		}*/
 		else if(egyezik(tmp, "rendõrfelfüggesztés") || egyezik(tmp, "rendorfelfuggesztes"))
 		{
 			tmp = strtok(text, idx);
-			if(!Munkarang(playerid, 5)) return !Msg(playerid, "Access Denied. 6os rang szükséges.");
+			//if(!Munkarang(playerid, 5)) return !Msg(playerid, "Access Denied. 6os rang szükséges.");
 			if(!strlen(tmp)) return !Msg(playerid, "Rendõrfelfüggesztés [Név/ID]");
 			new zseka = ReturnUser(tmp);
 			if(zseka == INVALID_PLAYER_ID) return !Msg(playerid, "Hibás név!");
 			if(!IsACop(zseka)) return !Msg(playerid, "A Játékos nem Rendõr!");
-			SendClientMessage(zseka, COLOR_LIGHTBLUE, "Az FBI felfüggesztett! Ismét civil vagy.");
+			SendClientMessage(zseka, COLOR_LIGHTBLUE, "A CIA felfüggesztett! Ismét civil vagy.");
 			PlayerInfo[zseka][pLeader] = 0;
 			PlayerInfo[zseka][pMember] = 0;
 			PlayerInfo[zseka][pRank] = 0;
@@ -722,18 +722,18 @@ public OnPlayerText(playerid, text[]) //opt
 			SendFormatMessage(playerid, Pink, "%s felfüggesztve!", ICPlayerName(zseka));
 			//new uzi[128];
 			//Format(uzi, "PDA Üzenet: %s felfüggesztette %s.", PlayerName(playerid), PlayerName(zseka));
-			SendRadioMessageFormat(FRAKCIO_FBI, Pink, "PDA Üzenet: %s felfüggesztette %s.", ICPlayerName(playerid), ICPlayerName(zseka));
+			SendRadioMessageFormat(FRAKCIO_CIA, Pink, "Laptop Üzenet: %s felfüggesztette %s.", ICPlayerName(playerid), ICPlayerName(zseka));
 			return 0;
 		}
 		else if(egyezik(tmp, "jelszó") || egyezik(tmp, "jelszo"))
 		{
-			SendFormatMessage(playerid, Pink, "A jelszó most %s.", FrakcioInfo[FRAKCIO_FBI][fJelszo]);
+			SendFormatMessage(playerid, Pink, "A jelszó most %s.", FrakcioInfo[FRAKCIO_CIA][fJelszo]);
 			return 0;
 		}
 		else if(egyezik(tmp, "logout"))
 		{
 			SendFormatMessage(playerid, Pink, "Server Disconnected. Jó munkát %s Ügynök.", ICPlayerName(playerid));
-			Belepve[playerid] = 0;
+			CIABelepve[playerid] = 0;
 			return 0;
 		}
 		else if(egyezik(tmp, "lenyomozás") || egyezik(tmp, "lenyomozas"))
@@ -993,13 +993,13 @@ public OnPlayerText(playerid, text[]) //opt
 			if(player == playerid) return !Msg(playerid, "Magadról nem!");
 			SendFormatMessage(playerid, Pink, "ClassRPG: Sikeresen törölted %s körözését!", ICPlayerName(player));
 			ClearPlayerCrime(player);
-			Msg(player, "Az FBI törölte rólad a körözést.");
+			Msg(player, "A CIA törölte rólad a körözést.");
 			return 0;
 		}
-		else if(egyezik(tmp, "clearvehicle"))
+		else if(egyezik(tmp, "clearcar"))
 		{
 			tmp = strtok(text, idx);
-			if(!strlen(tmp)) return !Msg(playerid, "Clearvehicle [Név/ID]");
+			if(!strlen(tmp)) return !Msg(playerid, "Clearcar [Név/ID]");
 			new car = strval(tmp);
 			if(car == INVALID_VEHICLE_ID) return !Msg(playerid, "Hibás név!");
 			SendFormatMessage(playerid, Pink, "ClassRPG: Sikeresen törölted a CLS-%d rendszámú jármû körözését!", car);
@@ -1023,7 +1023,7 @@ public OnPlayerText(playerid, text[]) //opt
 			SendClientMessage(playerid, Pink, "Mostantól ha telefonál, hallani fogod!");
 			return 0;
 		}
-		else if(egyezik(tmp, "bezaras") || egyezik(tmp, "bezárás"))
+		/*else if(egyezik(tmp, "bezaras") || egyezik(tmp, "bezárás"))
 		{
 			if(!Munkarang(playerid, 10)) return !Msg(playerid, "Access Denied. 10es rang szükséges.");
 			if(Fbibelepes != 0) return !Msg(playerid, "Zárva van vagy behatolás történt(használd a deaktiválást).");
@@ -1038,12 +1038,12 @@ public OnPlayerText(playerid, text[]) //opt
 			Fbibelepes = 0;
 			Msg(playerid, "Nyitva.");
 			return 0;
-		}
+		}*/
 		else if(egyezik(tmp, "poloska"))
 		{
 			tmp = strtok(text, idx);
 			new player = ReturnUser(tmp);
-			if(!Munkarang(playerid, 2)) return !Msg(playerid, "Access Denied. 2as rang szükséges.");
+			//if(!Munkarang(playerid, 2)) return !Msg(playerid, "Access Denied. 2as rang szükséges.");
 			if(player == INVALID_PLAYER_ID || player == playerid) return !Msg(playerid, "Hibás név!");
 			if(GetDistanceBetweenPlayers(playerid, player) > 2) return !Msg(playerid, "Nagyon közelnek kell lenned a célponthoz!");
 			if(!strlen(tmp)) return !Msg(playerid, "Poloska [Név/ID]");
@@ -1065,7 +1065,7 @@ public OnPlayerText(playerid, text[]) //opt
 		}
 		else if(egyezik(tmp, "poloskabe"))
 		{
-			if(!Munkarang(playerid, 2)) return !Msg(playerid, "Access Denied. 2as rang szükséges.");
+			//if(!Munkarang(playerid, 2)) return !Msg(playerid, "Access Denied. 2as rang szükséges.");
 			if(Poloskazta[playerid] == NINCS) return !Msg(playerid, "Senkire sem raktál poloskát!");
 			Msg(playerid, "Poloska bekapcsolva!");
 			Poloska[playerid] = true;
@@ -1073,7 +1073,7 @@ public OnPlayerText(playerid, text[]) //opt
 		}
 		else if(egyezik(tmp, "poloskaki"))
 		{
-			if(!Munkarang(playerid, 2)) return !Msg(playerid, "Access Denied. 2as rang szükséges.");
+			//if(!Munkarang(playerid, 2)) return !Msg(playerid, "Access Denied. 2as rang szükséges.");
 			if(Poloskazta[playerid] == NINCS) return !Msg(playerid, "Senkire sem raktál poloskát!");
 			Msg(playerid, "Poloska kikapcsolva!");
 			Poloska[playerid] = false;
@@ -1082,18 +1082,15 @@ public OnPlayerText(playerid, text[]) //opt
 		else
 		{
 			SendClientMessage(playerid, Pink, "Lehetõségek:");
-			SendClientMessage(playerid, Pink, "| Clearplayer - Clearvehicle");
+			SendClientMessage(playerid, Pink, "| Clearplayer - Clearcar");
 			SendClientMessage(playerid, Pink2, "| Aktiválás - Deaktiválás");
 			SendClientMessage(playerid, Pink, "| Bankszámla - Adatnézés");
 			SendClientMessage(playerid, Pink2, "| Lehallgatás - Jelszó");
 			SendClientMessage(playerid, Pink, "| Lenyomozás - Telefonlehallgatás");
-			if(Munkarang(playerid, 2)) SendClientMessage(playerid, Pink2, "| Álnév");
-			if(Munkarang(playerid, 3))
-			{
-				SendClientMessage(playerid, Pink, "| Beépülés");
-				SendClientMessage(playerid, Pink2, "| Poloska - [be/ki]");
-			}
-			if(Munkarang(playerid, 6)) SendClientMessage(playerid, Pink, "| Rendõrfelfüggesztés");
+			SendClientMessage(playerid, Pink2, "| Álnév");
+			SendClientMessage(playerid, Pink, "| Beépülés");
+			SendClientMessage(playerid, Pink2, "| Poloska - [be/ki]");
+			SendClientMessage(playerid, Pink, "| Rendõrfelfüggesztés");
 			if(Munkarang(playerid, 10)) SendClientMessage(playerid, Pink2, "| Bezárás - Nyitás");
 			SendClientMessage(playerid, Pink, "							                Logout					");
 			return 0;
