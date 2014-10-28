@@ -1453,7 +1453,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		if(egyezik(param[1], "megvizsgál") || egyezik(param[1], "megvizsgal"))
 		{
-		    if(!LMT(playerid, FRAKCIO_MENTO) && !LMT(playerid, FRAKCIO_FBI && !LMT(playerid, FRAKCIO_CIA)) return Msg(playerid, "Te nem vagy Mentõ / FBI / CIA");
+		    if(!LMT(playerid, FRAKCIO_MENTO) && !LMT(playerid, FRAKCIO_FBI) && !LMT(playerid, FRAKCIO_CIA)) return Msg(playerid, "Te nem vagy Mentõ / FBI / CIA");
 			if(PlayerInfo[playerid][pVizsgal])
 				return SendClientMessage(playerid, COLOR_LIGHTRED, "Egy vizsgálás már folyamatban van!");
 			if(IsPlayerInAnyVehicle(playerid)) return Msg(playerid, "Jármûbõl akarod átnézni a hullát?");
@@ -31924,7 +31924,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	if(egyezik(cmd, "/beépített") || egyezik(cmd, "/beepitett"))
 	{
 		new frakcio = PlayerInfo[playerid][pMember];
-		if(!LMT(playerid, FRAKCIO_SCPD) && !LMT(playerid, FRAKCIO_FBI && !LMT(playerid, FRAKCIO_CIA)) return Msg(playerid, "Nem vagy rendõr / FBI / CIA");
+		if(!LMT(playerid, FRAKCIO_SCPD) && !LMT(playerid, FRAKCIO_FBI) && !LMT(playerid, FRAKCIO_CIA)) return Msg(playerid, "Nem vagy rendõr / FBI / CIA");
 		if(!LMT(playerid, FRAKCIO_FBI) && !LMT(playerid, FRAKCIO_CIA) && !Munkarang(playerid, 4)) return Msg(playerid, "Minimum 4es rang szükséges.");
 		if(OnDuty[playerid] == 0) return Msg(playerid, "Nem vagy szolgálatba.");
 		if(!PlayerToPoint(FrakcioInfo[frakcio][fDPosR], playerid, FrakcioInfo[frakcio][fDPosX],FrakcioInfo[frakcio][fDPosY],FrakcioInfo[frakcio][fDPosZ],FrakcioInfo[frakcio][fDVW],FrakcioInfo[frakcio][fDINT]))
