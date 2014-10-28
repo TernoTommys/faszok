@@ -10,6 +10,27 @@
  *    í: 3   õ: 6   û: 9    *  
  ****************************/
 
+ALIAS(b5k2s):poke;
+ALIAS(b5k):poke;
+CMD:poke(playerid, params[])
+{
+		if(Admin(playerid, 1))
+			return SendClientMessage(playerid, COLOR_LIGHTRED, "[Hiba]: Ezt a parancsot nem használhatod!");
+			
+        new jatekos, oka[64];
+        if(sscanf(pms, "us[64]", jatekos, oka))
+            return SendClientMessage(playerid, COLOR_WHITE, "Használata: /poke [Játékos] [Oka]");
+			
+		if(jatekos == INVALID_PLAYER_ID || IsPlayerNPC(jatekos))
+			return SendClientMessage(playerid, COLOR_LIGHTRED, "[Hiba]: Nincs ilyen játékos!");
+			
+		SendFormatMessage(playerid, COLOR_LIGHTRED, "Megbökted %s-t, Oka: %s", PlayerName(jatekos), oka);
+		SendFormatMessage(jatekos, COLOR_LIGHTRED, "[Bökés] %s megbökött | Oka: %s", PlayerName(playerid), oka);
+			
+
+	return 1;
+}
+
 CMD:adminafk(playerid, params[])
 {
 	if(Admin(playerid, 2))
@@ -2497,7 +2518,7 @@ CMD:kozmunka(playerid, params[])
 	}
 	return 1;
 }
-
+ALIAS(menza):koszt;
 CMD:koszt(playerid, params[])
 {
 	if(FloodCheck(playerid)) return 1;
@@ -2518,7 +2539,7 @@ CMD:koszt(playerid, params[])
 	elseif(egyezik(kaja, "borsófõzelék") || egyezik(kaja, "borsofozelek"))
 		Szukseglet(playerid, -8.5, -1.5),Cselekves(playerid, "kért egy adag borsófõzeléket.");
 	elseif(egyezik(kaja, "krumplifõzelék") || egyezik(kaja, "krumplifozelek"))
-		Szukseglet(playerid, -4.5, -5.5),Cselekves(playerid, "kért egy adag tojáslevest.");
+		Szukseglet(playerid, -4.5, -5.5),Cselekves(playerid, "kért egy adag krumplifõzelék.");
 	else return Msg(playerid,"Nincs ilyen koszt.");
 	
 	Evett[playerid] = UnixTime+300;
@@ -6267,7 +6288,7 @@ CMD:askill(playerid, params[]) // Franklin kérése
 	if(egyezik(sub, "pisztoly"))
 	{
 		skill = 0;
-		if(sscanf(spms, "i", amount))
+		if(sscanf(spms, "i",	 amount))
 			return SendClientMessage(playerid, COLOR_LIGHTRED, "Használata: /askill pisztoly [mennyiség]");
 		
 		if(amount < 1 || amount > 1600)
