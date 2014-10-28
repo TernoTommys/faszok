@@ -1201,6 +1201,16 @@ stock Torlesek() { //orem
 	RemoveBuildingForPlayer(playerid, 1284, 633.9609, -1720.7891, 16.1953, 50.0);
 	RemoveBuildingForPlayer(playerid, 1283, 1193.1328, -1851.4688, 15.6250, 40.0);
 	
+	//CIA HQ - Edie Morra 2014.10.29
+	RemoveBuildingForPlayer(playerid, 16336, -225.1875, 1394.8359, 68.5781, 0.25);
+	RemoveBuildingForPlayer(playerid, 16615, -389.7656, 1515.1641, 74.5547, 0.25);
+	RemoveBuildingForPlayer(playerid, 16616, -326.6953, 1541.3906, 74.5547, 0.25);
+	RemoveBuildingForPlayer(playerid, 16725, -166.0547, 1395.7891, 12.7109, 0.25);
+	RemoveBuildingForPlayer(playerid, 16141, -166.0547, 1395.7891, 12.7109, 0.25);
+	RemoveBuildingForPlayer(playerid, 16335, -225.1875, 1394.8359, 68.5781, 0.25);
+	RemoveBuildingForPlayer(playerid, 16137, -389.7656, 1515.1641, 74.5547, 0.25);
+	RemoveBuildingForPlayer(playerid, 16138, -326.6953, 1541.3906, 74.5547, 0.25);
+	
 	
 	return 1;
 }
