@@ -4871,7 +4871,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	{
 		new kocsi = GetPlayerVehicleID(playerid);
 		if(!IsACop(playerid)) return Msg(playerid, "Csak a rendõrség tagjainak!");
-		if(!Munkarang(playerid,3) && !LMT(playerid, FRAKCIO_FBI && !LMT(playerid, FRAKCIO_CIA) && !LMT(playerid, FRAKCIO_KATONASAG)) return Msg(playerid, "A-A");
+		if(!Munkarang(playerid,3) && !LMT(playerid, FRAKCIO_FBI) && !LMT(playerid, FRAKCIO_CIA) && !LMT(playerid, FRAKCIO_KATONASAG)) return Msg(playerid, "A-A");
 		if(CarPart[kocsi][cElektronika] >= 100.0) return Msg(playerid, "Az elektronika tönkrement, így nem tudod bekapcsolni!");
 		if(params < 1) return Msg(playerid, "Használat: /sziréna [Nagy / Kicsi]");
 
@@ -34951,7 +34951,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	{
 	    if(IsPlayerConnected(playerid))
 	    {
-			if(LMT(playerid, FRAKCIO_SCPD) || LMT(playerid, FRAKCIO_FBI) || LMT(playerid, FRAKCIO_CIA) || LMT(para1, FRAKCIO_SFPD) || LMT(playerid, FRAKCIO_NAV) || LMT(playerid, FRAKCIO_TUZOLTO) || LMT(playerid, FRAKCIO_KATONASAG))
+			if(LMT(playerid, FRAKCIO_SCPD) || LMT(playerid, FRAKCIO_FBI) || LMT(playerid, FRAKCIO_CIA) || LMT(playerid, FRAKCIO_SFPD) || LMT(playerid, FRAKCIO_NAV) || LMT(playerid, FRAKCIO_TUZOLTO) || LMT(playerid, FRAKCIO_KATONASAG))
 			{
                 	SendClientMessage(playerid, COLOR_LIGHTRED, "*====[Kitüntetésed]===*");
                 	if(PlayerInfo[playerid][pKituntetes] == 1)
