@@ -31641,7 +31641,7 @@ fpublic SetPlayerCriminal(playerid, reporter, reason[])
 	if(reporter == 255)
 	{
 		if(Harcol[playerid]) return 1;
-		if(IsACop(playerid) && Onduty[playerid] || LMT(playerid, FRAKCIO_CIA)) return 1;
+		if(IsACop(playerid) && OnDuty[playerid] || LMT(playerid, FRAKCIO_CIA)) return 1;
 		if(Szajkendo[playerid] || Maszk[playerid])
 		{
 			new chanceforillegal = random(100), bool:k;
