@@ -10,3 +10,21 @@ KRISZ BUZI
 =======
 cxd
 >>>>>>> 3e4824678cf2d8dcfc6c8f4fe7788294e77942a0
+
+asd
+asd
+asd
+asd
+asd
+asd
+asd
+asd
+asd
+sad
+asd
+asd
+asd
+ads
+asd
+ads
+asd
