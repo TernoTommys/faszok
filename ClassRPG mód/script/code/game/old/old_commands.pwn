@@ -47389,7 +47389,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			return 1;
 		}
 	}
-	if(strcmp(cmd,"/portable",true)==0 || strcmp(cmd,"/laptop",true)==0)
+	if(strcmp(cmd,"/portable",true)==0)
 	{
 		if(!IsHitman(playerid)) return 1;
 		if(ConnectedToPC[playerid] == 255)
