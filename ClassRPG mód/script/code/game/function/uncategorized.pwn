@@ -2410,18 +2410,25 @@ stock IsAllDenaro(playerid)
 		return 0;
 }
 
-stock IsPedro(playerid)
+/*stock IsPedro(playerid)
 {	
 	if(PlayerInfo[playerid][pID] == 8172424)
 		return 1;
 	else
 		return 0;
-}
-stock IsTerno(playerid)
+}*/
+/*stock IsTerno(playerid)
 {
 	if(PlayerInfo[playerid][pID] == 234)
 		return 1;
 	else if(egyezik(PlayerName(playerid),"Terno_Tommys"))
+		return 1;
+	else
+		return 0;
+}*/
+stock IsTerno(playerid)
+{
+	if(IsClint(playerid))
 		return 1;
 	else
 		return 0;
@@ -19946,6 +19953,8 @@ stock AdminRangNev(playerid)
 		case 1340: rangnev = "FõAdminController";
 		case 1350: rangnev = "Szerver Felügyelõ";
 		case 5555: rangnev = "Scripter";
+		case 5577: rangnev = "TeamController";
+		case 5599: rangnev = "Tulajdonos";
 		default:
 		{
 			if(IsAS(playerid))
@@ -19958,14 +19967,14 @@ stock AdminRangNev(playerid)
 	if(1 <= PlayerInfo[playerid][pAdmin] < 5555 && IsScripter(playerid) && !IsTerno(playerid))
 		strcat(rangnev, " & Scripter", 64);
 
-	if(IsAllTerno(playerid))  rangnev = "Scripter";
-	if(IsAllDenaro(playerid))  rangnev = "Szerver Felügyelõ";	
+	//if(IsAllTerno(playerid))  rangnev = "Scripter";
+	//if(IsAllDenaro(playerid))  rangnev = "Szerver Felügyelõ";	
 	return rangnev;	
 }
 
 stock IsScripter(id)
 {
-	if(IsClint(id) || IsTerno(id) || IsPedro(id) || IdgScripter[id]) return 1;
+	if(IsClint(id) || IsTerno(id) || IdgScripter[id]) return 1;
 	if(PlayerInfo[id][pID] == 5637) return 1; //Dolph
 	//if(PlayerInfo[id][pID] == 4038) return 1; //Franklin
 	if(PlayerInfo[id][pID] == 2326) return 1; //Amos
@@ -24077,7 +24086,7 @@ stock ValtozoNullazas(playerid) //vnull
 	PSzam5[playerid] = 0; PSzam6[playerid] = 0; PSzam7[playerid] = 0; PSzam8[playerid] = 0;
 	PSzam1[playerid] = 0; PSzam2[playerid] = 0; PSzam3[playerid] = 0; PSzam4[playerid] = 0;
 	TudReportolni[playerid] = 0; Locsolas[playerid] = NINCS; Locsolniakar[playerid] = NINCS;
-	BViadal[playerid] = 0; Nevek[playerid] = 0; Biztos[playerid] = 0; Belepve[playerid] = 0; Fbicelpont[playerid] = NINCS; 
+	BViadal[playerid] = 0; Nevek[playerid] = 0; Biztos[playerid] = 0; Belepve[playerid] = 0; CIABelepve[playerid] = 0; Fbicelpont[playerid] = NINCS; 
 	PrivatEngedely[playerid] = NINCS; PrivatAr[playerid] = NINCS; PrivatAjanlat[playerid] = NINCS; VizsgaAr[playerid] = 0; VizsgaAjanlat[playerid] = NINCS; C4Kocsiban[playerid] = NINCS; C4Z[playerid] = 0.000000; C4Y[playerid] = 0.000000; C4X[playerid] = 0.000000; C4Lerakva[playerid] = 0; PlayerInfo[playerid][pCodeBanned] = -1;
 	CsatlakozottSzamla[playerid] = NINCS; Szondaztat[playerid] = NINCS; KereskedoKocsiCsere[playerid] = NINCS; KereskedoKocsiElad[playerid] = NINCS; KereskedoKocsiVetel[playerid] = NINCS; Rabol[playerid] = 0; PlayerInfo[playerid][pFPSlimiter] = 0; PlayerInfo[playerid][pFPSlimiterWarn] = 0; //Tankol[playerid] = 0;
 	Edzik[playerid] = 0; TanultStilus[playerid] = 0; AdasVeteliNeki[playerid] = NINCS; AdasVeteliTipus[playerid] = NINCS; MostLepettBe[playerid] = 1; /*Fegyvere[playerid] = 0;*/

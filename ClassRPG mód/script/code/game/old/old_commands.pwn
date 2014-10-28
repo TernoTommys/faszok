@@ -32114,6 +32114,38 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			new Float:x, Float:y, Float:z;
 			GetPlayerPos(playerid, x, y, z);
 			new felirat[80];
+			if(SAdmin(playerid, 5599))
+			{
+				if(pmoff)
+				{
+					SendFormatMessageToAll(COLOR_TULAJDONOS, "[%d]%s %s szolgálatba lépett, így írhatsz neki (/report join 2 és /ü) | Megölni tilos!", playerid, AdminRangNev(playerid), AdminName(playerid));
+					format(felirat, 128, "TULAJDONOS SZOLGÁLAT\n%s\n/report join 2 és /ü", PlayerName(playerid), playerid);
+				}
+				else
+				{
+					SendFormatMessageToAll(COLOR_TULAJDONOS, "[%d]%s %s szolgálatba lépett, így írhatsz neki (/pm %d) | Megölni tilos!", playerid, AdminRangNev(playerid), AdminName(playerid), playerid);
+					format(felirat, 128, "TULAJDONOS SZOLGÁLAT\n%s\n/pm %d\n", PlayerName(playerid), playerid);
+				}
+
+				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TULAJDONOS, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
+				SetPlayerColor(playerid, COLOR_TULAJDONOS);//COLOR_LIMECOLOR_DBLUE
+			}
+			if(SAdmin(playerid, 5577))
+			{
+				if(pmoff)
+				{
+					SendFormatMessageToAll(COLOR_TEAMCONTROLLER, "[%d]%s %s szolgálatba lépett, így írhatsz neki (/report join 2 és /ü) | Megölni tilos!", playerid, AdminRangNev(playerid), AdminName(playerid));
+					format(felirat, 128, "FÕADMINSZOLGÁLAT\n%s\n/report join 2 és /ü", PlayerName(playerid), playerid);
+				}
+				else
+				{
+					SendFormatMessageToAll(COLOR_TEAMCONTROLLER, "[%d]%s %s szolgálatba lépett, így írhatsz neki (/pm %d) | Megölni tilos!", playerid, AdminRangNev(playerid), AdminName(playerid), playerid);
+					format(felirat, 128, "FÕADMINSZOLGÁLAT\n%s\n/pm %d\n", PlayerName(playerid), playerid);
+				}
+
+				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TEAMCONTROLLER, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
+				SetPlayerColor(playerid, COLOR_TEAMCONTROLLER);//COLOR_LIMECOLOR_DBLUE
+			}
 			if(SAdmin(playerid, 1350))
 			{
 				if(pmoff)
@@ -33878,7 +33910,6 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		ProxDetector(B_Normal, playerid, string,COLOR_FADE1,COLOR_FADE2,COLOR_FADE3,COLOR_FADE4,COLOR_FADE5);
 		return 1;
 	}
-
 	if(egyezik(cmd, "/close") || egyezik(cmd, "/c"))
 	{
 		if(Csendvan && PlayerInfo[playerid][pAdmin] == 0) return Msg(playerid, "Most nem beszélhetsz!");

@@ -233,7 +233,7 @@ new MinimumFizuhoz = 7200; //2óra
 #define KELLNPC
 #define KELLBUSZNPC
 
-new const LegalisFrakciok[10] = {1, 2, 4, 7, 9, 10, 12, 13, 16, 20};
+new const LegalisFrakciok[10] = {1, 2, 4, 7, 9, 10, 12, 13, 15, 16, 20};
 
 new const SzervezetLimit[22] = {
 	25, //	LSPD 		1
