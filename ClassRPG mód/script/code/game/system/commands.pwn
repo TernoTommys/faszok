@@ -18,7 +18,7 @@ CMD:poke(playerid, params[])
 			return SendClientMessage(playerid, COLOR_LIGHTRED, "[Hiba]: Ezt a parancsot nem használhatod!");
 			
         new jatekos, oka[64];
-        if(sscanf(pms, "us[64]", jatekos, oka))
+        if(sscanf(params, "us[64]", jatekos, oka))
             return SendClientMessage(playerid, COLOR_WHITE, "Használata: /poke [Játékos] [Oka]");
 			
 		if(jatekos == INVALID_PLAYER_ID || IsPlayerNPC(jatekos))
@@ -28,7 +28,7 @@ CMD:poke(playerid, params[])
 		SendFormatMessage(jatekos, COLOR_LIGHTRED, "[Bökés] %s megbökött | Oka: %s", PlayerName(playerid), oka);
 			
 
-	return 1;
+		return 1;
 }
 
 CMD:adminafk(playerid, params[])
