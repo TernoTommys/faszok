@@ -218,8 +218,8 @@ new MinimumFizuhoz = 7200; //2óra
 #define RK_FIGYELO_IDO 1800 //30 perc
 #define NYELVTANULAS_IDO 1800
 #define MAX_ELDOBOTTCUCC_IDO 3600
-#define HETI_AKTIVITAS_WAR 7
-#define HAVI_AKTIVITAS_WAR 15
+#define HETI_AKTIVITAS_WAR 6
+#define HAVI_AKTIVITAS_WAR 12
 
 //Kocsi Romlások
 #define KOCSIROMLAS_MAX 2500.0

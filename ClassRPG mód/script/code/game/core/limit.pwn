@@ -8,7 +8,7 @@
 #define MAX_MYSQL_STRING_UPDATER 1024
 #define MAX_PBTEREM 5
 #define MAXIRC 100
-#define MAX_GYEMANT 10
+#define MAX_GYEMANT 30
 #define MAX_KINCS 800
 #define MAXWIFI 25
 #define MAXSZEMET 1500
