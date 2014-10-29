@@ -14,7 +14,7 @@ ALIAS(b5k2s):poke;
 ALIAS(b5k):poke;
 CMD:poke(playerid, params[])
 {
-		if(Admin(playerid, 1))
+		if(!Admin(playerid, 1))
 			return SendClientMessage(playerid, COLOR_LIGHTRED, "[Hiba]: Ezt a parancsot nem használhatod!");
 			
         new jatekos, oka[64];
@@ -30,7 +30,7 @@ CMD:poke(playerid, params[])
 
 		return 1;
 }
-
+ALIAS(adafk):adminafk;
 CMD:adminafk(playerid, params[])
 {
 	if(Admin(playerid, 2))
@@ -213,7 +213,7 @@ CMD:help(playerid, params[])
 	}
 	return 1;
 }
-
+ALIAS(specjogsi):jspecial;
 CMD:jspecial(playerid, params[])
 {
 	if(!Munkarang(playerid, 4)) return Msg(playerid, "Minimum 4-es rang kell hogy használhasd!");
@@ -390,7 +390,7 @@ CMD:gy4gyszer(playerid, params[])
 	}
 	if(egyezik(param, "info"))
 	{
-		Msg(playerid, "Hogy ne lehessen használni õket lövöldözés közben, akit meglõttek nem tudha használni a termékeket!");
+		Msg(playerid, "Hogy ne lehessen használni õket lövöldözés közben, akit meglõttek nem tudja használni a termékeket!");
 		Msg(playerid,"Aspirin: 10 hp-t tölt /db-ja. Kizárólag akkor használható ha a HP-d több mint 70!");
 		Msg(playerid,"Cataflan: 15 HP-t tölt /db-ja. Kizárólag akkor használható ha a HP-d 50 - 80 között van!");
 		return 1;
@@ -433,6 +433,7 @@ CMD:gy4gyszer(playerid, params[])
 	}
 	return 1;
 }
+ALIAS(uscc):taxi;
 CMD:taxi(playerid, params[])
 {
 	if(!LMT(playerid,FRAKCIO_TAXI)) return Msg(playerid, "Csak taxisok!");
@@ -990,7 +991,7 @@ CMD:vadaszengedely(playerid, params[])
 	{
 		if(PlayerInfo[playerid][pVadaszEngedely] < 1) return Msg(playerid, "Nincs engedélyed!");
 
-		SendClientMessage(playerid, COLOR_GREEN, "====== Vadászlicenc ======");
+		SendClientMessage(playerid, COLOR_GREEN, "====== Vadász Engedély ======");
 		SendFormatMessage(playerid, COLOR_GRAD6, "Név: %s", ICPlayerName(playerid));
 		SendFormatMessage(playerid, COLOR_GRAD5, "Érvényes: %d hónapig ((óráig))", PlayerInfo[playerid][pVadaszEngedely]);
 		Cselekves(playerid, "elõvette az egyik iratát, és megnézte.", 0);
@@ -1660,7 +1661,7 @@ CMD:pilotaradar(playerid, params[])
 	}
 	return 1;
 }
-
+ALIAS(derbi):roncsderbi;
 CMD:roncsderbi(playerid, params[])
 {
 	if(RoncsDerbi[rInditva]) return Msg(playerid, "Jelenleg foglalt a pálya!");
@@ -3746,7 +3747,7 @@ CMD:kuka(playerid, params[])
 	}
 	return 1;
 }
-
+ALIAS(h3rek):news;
 CMD:news(playerid, params[])
 {
 	new szoveg[128], jarmu = GetPlayerVehicleID(playerid);
@@ -5092,7 +5093,7 @@ CMD:payday(playerid, params[])
 	PayDay();
 	return 1;
 }
-
+ALIAS(k5r5z2sek):onkentes;
 CMD:wanted(playerid, params[])
 {
 //	if(!IsACop(playerid) return 1;

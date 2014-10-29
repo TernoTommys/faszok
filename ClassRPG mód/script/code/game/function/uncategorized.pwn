@@ -41313,8 +41313,8 @@ stock SendMessage(type, msg[], color, p1 = 0)
 	{
 		foreach(Jatekosok, i)
 		{
-			if(LMT(i, FRAKCIO_KATONASAG) && PlayerToPoint(10, i, 213.6858,1822.7659,6.4141) && FrakcioKocsiID(GetPlayerVehicleID(i), PlayerInfo[i][pMember])) SendClientMessage(i, color, msg);
-			elseif(!LMT(i, FRAKCIO_KATONASAG) && IsARepulo(GetPlayerVehicleID(i))) SendClientMessage(i, color, msg);
+			if(LMT(i, FRAKCIO_KATONASAG) && PlayerToPoint(10, i, 213.6858,1822.7659,6.4141) || LMT(i, FRAKCIO_KATONASAG) && FrakcioKocsiID(GetPlayerVehicleID(i), PlayerInfo[i][pMember])) SendClientMessage(i, color, msg);
+			else if(!LMT(i, FRAKCIO_KATONASAG) && IsARepulo(GetPlayerVehicleID(i))) SendClientMessage(i, color, msg);
 		}
 	}
 	else if(type == SEND_MESSAGE_ONKENTES)

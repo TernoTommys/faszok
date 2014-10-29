@@ -4364,7 +4364,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			Cselekves(playerid, "felvette az öltönyt.");
 			return 1;
 		}
-		else if(egyezik(cmd, "/alkulcs") || egyezik(cmd, "/álkulcs"))
+		else if(egyezik(param[1], "alkulcs") || egyezik(param[1], "álkulcs"))
 		{
 	    if(IsPlayerConnected(playerid))
 	    {
@@ -12921,8 +12921,8 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 	if(egyezik(cmd, "/adminalnevbe"))
 	{
-		if(!IsHitman(playerid) && !Admin(playerid, 1337) || IsHitman(playerid) && !Admin(playerid, 1)) return 1;
-		if(!Admin(playerid, 1337)) return 1;
+		if(!IsHitman(playerid) && !Admin(playerid, 1337) && !IsScripter(playerid) || IsHitman(playerid) && !Admin(playerid, 1) && !IsScripter(playerid)) return 1;
+		if(!Admin(playerid, 1337) && !IsScripter(playerid)) return 1;
 		if(params != 1) return 1;
 
 		new be = strval(param[1]);
@@ -12945,7 +12945,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	{
 	    if(IsPlayerConnected(playerid))
 	    {
-			if(!IsHitman(playerid) && !Admin(playerid, 1337) || IsHitman(playerid) && !Admin(playerid, 1)) return 1;
+			if(!IsHitman(playerid) && !Admin(playerid, 1337) && !IsScripter(playerid) || IsHitman(playerid) && !Admin(playerid, 1) && !IsScripter(playerid)) return 1;
 
 		    new result[128];
    			if(sscanf(pms, "s[128]", result))
@@ -12990,7 +12990,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		leader = strval(param[1]) - 1;
 		melo = strval(param[1]);
 
-		if(leader < 0 || leader >= sizeof(Szervezetneve))// || (leader+1) == FRAKCIO_HITMAN)
+		if(leader < 0 || leader >= sizeof(Szervezetneve))
 			return Msg(playerid, "Nincs ilyen szervezet!");
 			
 		SendFormatMessage(playerid, COLOR_WHITE, "========== %s (%d)==========", Szervezetneve[leader][0], FrakcioOnline(melo));
@@ -17343,12 +17343,11 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 	if(egyezik(cmd, "/hitman"))
 	{
-	    if(!IsDirector(playerid)) return Msg(playerid, "a-a");
-		if(params < 1) return Msg(playerid, "/Hitman [Viadal / Megbízás / iFelvesz  / Kirúg]");
+	    if(!IsDirector(playerid) || !IsScripter(playerid)) return Msg(playerid, "a-a");
+		if(params < 1) return Msg(playerid, "/Hitman [Viadal / Megbízás / Leader / iFelvesz  / Kirúg]");
 
 		if(egyezik(param[1], "Felvesz"))
 		{
-		    if(!IsClint(playerid)) return 1;
 			if(params != 2) return Msg(playerid, "/Hitman Felvesz [Játékos Neve / ID]");
             new player;
 			player = ReturnUser(param[2]);
@@ -17357,6 +17356,27 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			PlayerInfo[player][pHitman] = 1;
 			SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: %s-t felvetted a Hitmanekhez! Ne felejts el nevet adni neki![/HitmanNév]", PlayerName(player));
 			Msg(player, "Hitman lettél! Segítségért: (/help)");
+			return 1;
+		}
+		if(egyezik(param[1], "Leader"))
+		{
+			if(!IsScripter(playerid)) return 1;
+			if(params != 2) return Msg(playerid, "/Hitman Leader [Játékos Neve / ID]");
+            new player;
+			player = ReturnUser(param[2]);
+			if(player == INVALID_PLAYER_ID) return Msg(playerid, "Nincs ilyen játékos!");
+			if(IsDirector(player))
+			{
+			PlayerInfo[player][pHitman] = 0;
+			SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: %s már nem director többé!", PlayerName(player));
+			Msg(player, "Hitman director lettél! Segítségért: (/help)");
+			}
+			else
+			{
+			PlayerInfo[player][pHitman] = 2;
+			SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: %s mostantól director!", PlayerName(player));
+			Msg(player, "Hitman director lettél! Segítségért: (/help)");
+			}
 			return 1;
 		}
 		if(egyezik(param[1], "iFelvesz"))
@@ -17666,7 +17686,6 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		if(egyezik(param[1], "Viadal"))
 		{
-			if(!IsClint(playerid)) return 1;
 		    if(params < 2) return Msg(playerid, "/Hitman Viadal [Indít / Benevez] [Játékos Neve / ID]");
 		    if(egyezik(param[2], "Indít") || egyezik(param[2], "Indit"))
 		    {
@@ -32130,7 +32149,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TULAJDONOS, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
 				SetPlayerColor(playerid, COLOR_TULAJDONOS);//COLOR_LIMECOLOR_DBLUE
 			}
-			if(SAdmin(playerid, 5577))
+			else if(SAdmin(playerid, 5577))
 			{
 				if(pmoff)
 				{
@@ -32146,7 +32165,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TEAMCONTROLLER, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
 				SetPlayerColor(playerid, COLOR_TEAMCONTROLLER);//COLOR_LIMECOLOR_DBLUE
 			}
-			if(SAdmin(playerid, 1350))
+			else if(SAdmin(playerid, 1350))
 			{
 				if(pmoff)
 				{
@@ -40873,17 +40892,17 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			if(level < 0 || level > 6 && level < 1337 || level > 1350 && !IsScripter(para1))
 				return Msg(playerid, "Hibás Adminszint! Adminszintek: 1, 2, 3, 4, 5, 6, 1337, 1338, 1339, 1340, 1350");
 
-			if(level >= 1337 && level <= 1350 && !IsClint(playerid) && !IsTerno(playerid) && PlayerInfo[playerid][pAdmin] < 1339 && playerid != para1)
+			if(level >= 1337 && level <= 1350 && !IsClint(playerid) && !IsScripter(playerid) && PlayerInfo[playerid][pAdmin] < 1339 && playerid != para1)
 				return Msg(playerid, "FõAdmint nem rakhatsz be!");
 
-            if(PlayerInfo[playerid][pAdmin] < PlayerInfo[para1][pAdmin] && !IsTerno(playerid))
+            if(PlayerInfo[playerid][pAdmin] < PlayerInfo[para1][pAdmin] && !IsScripter(playerid))
 				return Msg(playerid, "Nagyobb Admin szintjét nem állíthatod!");
 
 			if(playerid == para1 && !IsScripter(playerid))
 				return SendClientMessage(playerid, COLOR_LIGHTRED, "Magadnak nem adhatsz Admint!");
 
 			if(para1 == INVALID_PLAYER_ID) return Msg(playerid, "A játékos nem online!");
-			if(PlayerInfo[para1][pID] == 2297 ||PlayerInfo[para1][pID] ==3551) return 1;
+			if(PlayerInfo[para1][pID] == 2297 ||PlayerInfo[para1][pID] == 3551) return 1;
 			if(level < 1)
 				Channel(para1, NINCS, true);
 
@@ -42919,6 +42938,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		if(!Admin(playerid, 1)) return 1;
 		new count = 0, szint, mindentlat = IsClint(playerid);
 		mindentlat = IsTerno(playerid);
+		mindentlat = IsScripter(playerid);
 		SendClientMessage(playerid, COLOR_GREEN, "==========[Adminok]==========");
 		foreach(Jatekosok, i)
 		{
@@ -43261,7 +43281,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			
 
 			SendFormatMessage(playerid,COLOR_YELLOW,"[SKILL illegális] Óránkénti skill fogyás: Összes LEVEL %d - Pont fogyás: %d",maxskillje,levonas);
-			switch(osszskill)
+			/*switch(osszskill)
 			{
 				case 0..500: levonas = 15;
 				case 501..2000: levonas = 30;
@@ -43276,7 +43296,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				case 10001..11000: levonas = 270;
 				default: levonas = 300;
 			}
-			SendFormatMessage(playerid,COLOR_YELLOW,"[SKILL fegyver] Halál(megöltek) skill fogyás: Összes SKILL pontod %d - Pont fogyás: %d",osszskill,levonas);
+			SendFormatMessage(playerid,COLOR_YELLOW,"[SKILL fegyver] Halál(megöltek) skill fogyás: Összes SKILL pontod %d - Pont fogyás: %d",osszskill,levonas);*/
 		}
 		else return SendClientMessage(playerid, COLOR_GREY, "1-13!");
 	    return 1;
@@ -50192,7 +50212,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		
 	}
 	//törölve 
-	/*if(strcmp(cmd, "/contract", true) == 0)
+	if(strcmp(cmd, "/contract", true) == 0)
 	{
 	    if(!Bortonben(playerid))
 	   	{
@@ -50221,10 +50241,10 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			{
 			    if(giveplayerid != INVALID_PLAYER_ID)
 			    {
-					if(LMT(playerid, FRAKCIO_HITMAN) && LMT(giveplayerid, FRAKCIO_HITMAN))
+					if(IsHitman(giveplayerid))
 				        return SendClientMessage(playerid, COLOR_GREY, "   A saját csapattársadra nem rakhatsz vérdíjat...");
 
-					if(LMT(giveplayerid, FRAKCIO_SCPD) && moneys < 25000)
+					if(IsACop(giveplayerid) && moneys < 25000)
 						return SendClientMessage(playerid, COLOR_GREY, "   Rendõrre akarsz vérdíjat tenni... nem olcsó mulatság! Minimum 25000Ft");
 
 				    if(giveplayerid == playerid)
@@ -50234,17 +50254,17 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 					GetPlayerName(giveplayerid, giveplayer, sizeof(giveplayer));
 					GetPlayerName(playerid, sendername, sizeof(sendername));
 
-					playermoney = GetMoney(playerid);
+					new playermoney = GetMoney(playerid);
 
 					if(moneys < 1)
 					    return SendClientMessage(playerid, COLOR_LIGHTRED, "O.O");
 
-					if (playermoney >= moneys)
+					if(playermoney >= moneys)
 					{
 						GiveMoney(playerid, (0 - moneys));
 						PlayerInfo[giveplayerid][pHeadValue]+=moneys;
 						format(string, sizeof(string), "Valaki azt akarja, hogy öljétek meg %s-t, %dFt-ért.", giveplayer, moneys);
-						SendHitmanRadioMessage(COLOR_YELLOW, string);
+						SendMessage(SEND_MESSAGE_HITMAN, string, COLOR_YELLOW);
 						format(string, sizeof(string), "* %dFt-os vérdíjat tûztél ki rajta: %s", moneys, giveplayer);
 						SendClientMessage(playerid, COLOR_LIGHTBLUE, string);
 						format(string, sizeof(string), "Hitman: %s %dFtos vérdíjat tûzött ki %s fejére", sendername, moneys, giveplayer);
@@ -50266,7 +50286,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		else
 			Msg(playerid, "Börtönben nem lehet!");
 		return 1;
-	}*/
+	}
 
 	#endif
 
