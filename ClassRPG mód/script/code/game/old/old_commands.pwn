@@ -44044,7 +44044,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			else if(egyezik(param[1],"admins") || egyezik(param[1],"admin"))
 			{
 				new channel;
-				if(params < 1)
+				if(params < 2)
 				{
 					SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc admin(s) [irc szám]");
 					return 1;
