@@ -6,14 +6,14 @@
 #define SQL_Host "127.0.0.1"
 
 // MYSQL :: MAIN CREDENTIALS
-#define SQL_User "seosee"
-#define SQL_Jelszo "seeseo"
-#define SQL_Adatbazis "seosee"
+#define SQL_User "root"
+#define SQL_Jelszo "e9v6ggwAUkL0X5UiDCbS"
+#define SQL_Adatbazis "ClassRPG_Re_born"
 
 // MYSQL :: TEST CREDENTIALS
-#define SQL_UserTeszt "seotest"
-#define SQL_JelszoTeszt "testseo"
-#define SQL_AdatbazisTeszt "seotest"
+#define SQL_UserTeszt "root"
+#define SQL_JelszoTeszt "e9v6ggwAUkL0X5UiDCbS"
+#define SQL_AdatbazisTeszt "classteszt"
 
 // MYSQL :: TABLES
 #define SQL_DB_Account "accountok"

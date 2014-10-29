@@ -30992,25 +30992,25 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			{
 				new nev[32], mehet = 0;
 				if(PlayerInfo[i][pLeader] == FRAKCIO_SCPD)
-					nev = "LS Rendõrség";
+					nev = "LSPD";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_MENTO)
-					nev = "LS Kórház";
+					nev = "USMC";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_ONKORMANYZAT)
-					nev = "Kormány";
+					nev = "USG";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_RIPORTER)
-					nev = "LS Hírvívõszolgálat";
+					nev = "USN";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_TAXI)
-					nev = "Taxi vállalat";
-				/*else if(PlayerInfo[i][pLeader] == FRAKCIO_SFPD)
-					nev = "SF Rendõrség";*/
+					nev = "Taxi";
+				else if(PlayerInfo[i][pLeader] == FRAKCIO_SFPD)
+					nev = "SFPD";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_OKTATO)
-					nev = "Oktatók";
+					nev = "USEC";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_NAV)
-					nev = "NAV";
+					nev = "BATF";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_TUZOLTO)
-					nev = "Tûzoltóság";
+					nev = "SFFD";
 				else if(PlayerInfo[i][pLeader] == FRAKCIO_KATONASAG)
-					nev = "Katonaság";
+					nev = "USAF";
 				else
 					mehet=5;
 
