@@ -43673,6 +43673,11 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			else if(egyezik(param[1], "status"))
 			{
 				new channel;
+				if(params < 1)
+				{
+				SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc status [irc szám]");
+				return 1;
+				}
 			    if(sscanf(pms, "{s[32]}D(-1)", channel))
 				{
 				    SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc status [irc szám]");
@@ -44040,6 +44045,11 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			else if(egyezik(param[1],"admins") || egyezik(param[1],"admin"))
 			{
 				new channel;
+				if(params < 1)
+				{
+					SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc admin(s) [irc szám]");
+				return 1;
+				}
 			    if(sscanf(pms, "{s[32]}D(-1)", channel))
 				{
 				    SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc admin(s) [irc szám]");
