@@ -32150,6 +32150,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TULAJDONOS, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
 				SetPlayerColor(playerid, COLOR_TULAJDONOS);//COLOR_LIMECOLOR_DBLUE
+				return 1;
 			}
 			else if(SAdmin(playerid, 5577))
 			{
@@ -32166,6 +32167,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TEAMCONTROLLER, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
 				SetPlayerColor(playerid, COLOR_TEAMCONTROLLER);//COLOR_LIMECOLOR_DBLUE
+				return 1;
 			}
 			else if(SAdmin(playerid, 1350))
 			{
@@ -33099,7 +33101,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	{
 	    if(IsPlayerConnected(playerid))
 	    {
-			if PlayerInfo[playerid][pAdmin] >= 1 || IsScripter(playerid))
+			if(PlayerInfo[playerid][pAdmin] >= 1 || IsScripter(playerid))
 			{
 				new Float:slx, Float:sly, Float:slz;
 				GetPlayerPos(playerid, slx, sly, slz);
@@ -33117,7 +33119,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	{
 	    if(IsPlayerConnected(playerid))
 	    {
-			if (PlayerInfo[playerid][pAdmin] >= 1 || IsScripter(playerid))
+			if(PlayerInfo[playerid][pAdmin] >= 1 || IsScripter(playerid))
 			{
 				new Float:slx, Float:sly, Float:slz;
 				GetPlayerPos(playerid, slx, sly, slz);
