@@ -1321,7 +1321,7 @@ CMD:kormany(playerid, params[])
 
 	if(sscanf(params, "s[12]S()[60]", func,func2)) return Msg(playerid,"/kormány [stat / frakcióadó / akitüntetés / rendezvény / settax / givetax]");
 
-	if(!LMT(playerid, FRAKCIO_ONKORMANYZAT) && !Admin(playerid, 1337)) return SendClientMessage(playerid, COLOR_GREY, "Nem vagy (Al)Elnök!");
+	if(!LMT(playerid, FRAKCIO_ONKORMANYZAT) && !Admin(playerid, 1337) && IsScripter(playerid)) return SendClientMessage(playerid, COLOR_GREY, "Nem vagy (Al)Elnök!");
 			
 			
 		

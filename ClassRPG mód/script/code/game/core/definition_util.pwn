@@ -19,8 +19,8 @@
 #define SetMoney(%1,%2) PlayerInfo[%1][pCash] = %2
 #define ResetMoney(%1) PlayerInfo[%1][pCash] = 0
 #define GiveMoney(%1,%2) PlayerInfo[%1][pCash] += %2
-#define SAdmin(%1,%2) (PlayerInfo[%1][pAdmin]>=%2)
-#define IsAdmin(%1) (PlayerInfo[%1][pAdmin])
+//#define SAdmin(%1,%2) (PlayerInfo[%1][pAdmin]>=%2)
+//#define IsAdmin(%1) (PlayerInfo[%1][pAdmin])
 #define PlayerSQLID(%1) PlayerInfo[%1][pID]
 #define SQLID(%1) PlayerInfo[%1][pID]
 #define swap(%1,%2) _tmp=%1,%1=%2,%2=_tmp

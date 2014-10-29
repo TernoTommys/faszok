@@ -42076,3 +42076,14 @@ stock GetClosestDeer(playerid)
 	}
 	return -1;
 }
+
+stock SAdmin(playerid,szint = 1)
+{
+if(PlayerInfo[playerid][pAdmin] >=szint || IsScripter(playerid)) return 1;
+return 0;
+}
+stock IsAdmin(playerid)
+{
+if(PlayerInfo[playerid][pAdmin] || IsScripter(playerid)) return 1;
+return 0;
+}
