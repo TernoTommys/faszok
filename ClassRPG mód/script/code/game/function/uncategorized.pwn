@@ -29571,7 +29571,7 @@ fpublic OnPlayerDeath(playerid, killerid, reason)
 			KillLog(_tmpString, 0);
 			foreach(Jatekosok, i)
 			{
-				if(PlayerInfo[i][pAdmin] > 0 && togkill[i])
+				if(PlayerInfo[i][pAdmin] > 0 && togkill[i] || IsScripter(i))
 					SendClientMessage(i, COLOR_GREY, _tmpString);
 			}
 		}

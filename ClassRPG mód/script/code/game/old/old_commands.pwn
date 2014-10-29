@@ -8577,7 +8577,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	}
 	if(egyezik(cmd, "/unbanip"))
 	{
-		if(!Admin(playerid, 1337)) return 1;
+		if(!Admin(playerid, 1337) && !IsScripter(playerid)) return 1;
 
 		if(params < 1)
 			return Msg(playerid, "Használata: /unbanip [ip]");
