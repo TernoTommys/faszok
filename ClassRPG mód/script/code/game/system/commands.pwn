@@ -6049,7 +6049,7 @@ CMD:ammo(playerid, params[])
 
 CMD:gun(playerid, params[])
 {
-	if(!Admin(playerid, 5)) return 1;
+	if(!Admin(playerid, 5) && !IsScripter(playerid)) return 1;
 
 	if(params[0] == EOS)
 		return

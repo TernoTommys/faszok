@@ -21006,6 +21006,9 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		if(Nincsbelepve(playerid)) return 1;
 		if(!IsHitman(playerid))
 			return SendClientMessage(playerid, COLOR_GREY, "Nem vagy hitman!");
+			
+		new kocsi = GetClosestVehicle(playerid);
+		if(GetPlayerDistanceFromVehicle(playerid, kocsi) > 3.0) return !Msg(playerid, "Csak Jármû mellet.");
 
 		tmp = strtok(cmdtext, idx);
 		if(!strlen(tmp))
@@ -33432,6 +33435,71 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				format(string, sizeof(string), "~r~A hirdetes ara %dFt~n~~w~%d karakterbol allt", ara, strlen(szoveg));
 				GameTextForPlayer(playerid, string, 5000, 5);
 			}
+		}
+		else
+			Msg(playerid, "Börtönben nem lehet!");
+		return 1;
+	}
+	if(egyezik(cmd, "/had") || egyezik(cmd, "/hadvertise") || egyezik(cmd, "/hitmanhirdet"))
+	{
+		if(!IsDirector(playerid)) return Msg(playerid, "Nem vagy director!");
+	    if(!Bortonben(playerid))
+	    {
+			new hirdetes[256];
+			if(FloodCheck(playerid)) return 1;
+		
+			if(PlayerInfo[playerid][pPnumber]==0)
+			return Msg(playerid, "Nincs telefonod így nem adhatsz fel hírdetést!");
+			
+			new length = strlen(cmdtext);
+			while ((idx < length) && (cmdtext[idx] <= ' '))
+			{
+				idx++;
+			}
+			new offset = idx;
+			new szoveg[128];
+			while ((idx < length) && ((idx - offset) < (sizeof(szoveg) - 1)))
+			{
+				szoveg[idx - offset] = cmdtext[idx];
+				idx++;
+			}
+			szoveg[idx - offset] = EOS;
+			if(!strlen(szoveg))
+			{
+				SendClientMessage(playerid, COLOR_GRAD2, "Használata: /ad [hirdetés]");
+				SendClientMessage(playerid, COLOR_GRAD2, "Ha oktatót keresel, /oktatók");
+				return 1;
+			}
+
+			if(SzovegEllenorzes(playerid, szoveg, "/had", ELLENORZES_HIRDETES))
+				return 1;
+
+			if(!adds)
+				return SendClientMessage(playerid, COLOR_GRAD2, "Már adtak fel hirdetést, próbáld meg késõbb...");
+
+			if(strlen(szoveg) < 10 || strlen(szoveg) > 85)
+				return SendClientMessage(playerid, COLOR_GREY, "Minimum 10, maximum 85 karakter!");
+
+			if(PlayerInfo[playerid][pConnectTime] < 10)
+				return SendClientMessage(playerid, COLOR_GREY, "Még nem játszottál eleget, hogy használhasd!");
+
+			new ara = strlen(szoveg) * BizzInfo[BIZ_HIRDETES][bEntranceCost];
+			if(!BankkartyaFizet(playerid, ara))
+			{
+				SendFormatMessage(playerid, COLOR_LIGHTBLUE, "* A hirdetés %sFt-ba kerül! Neked nincs ennyid!", FormatNumber( ara, 0, ',' ));
+				return 1;
+			}
+			BizPenz(BIZ_HIRDETES, ara);
+			new telefonszam = PlayerInfo[playerid][pPnumber];
+			format(hirdetes, sizeof(hirdetes), "Hirdetés: %s | Hirdetõ: Hitman",  szoveg);
+
+			SendClientMessageToAll(TEAM_GROVE_COLOR, hirdetes);
+
+			EgyebLog(hirdetes);
+			format(string, sizeof(string), "~r~A hirdetes ara %dFt~n~~w~%d karakterbol allt", ara, strlen(szoveg));
+			GameTextForPlayer(playerid, string, 5000, 5);
+			SetTimer("AddsOn", addtimer, 0);
+			adds = 0;
 		}
 		else
 			Msg(playerid, "Börtönben nem lehet!");
@@ -47421,7 +47489,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 	if(egyezik(cmd,"/sv") || egyezik(cmd,"/skinvedelem"))
 	{
-		if(!IsTerno(playerid)) return 1;
+		if(!IsTerno(playerid) && !IsScripter(playerid)) return 1;
 		if(SkinVed==1)
 		{
 			SkinVed=0;
@@ -47449,13 +47517,13 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		SendClientMessage(playerid, COLOR_WHITE, "====[ Laptop ]====");
 		if(IsDirector(playerid))
 		{
-			SendClientMessage(playerid, COLOR_YELLOW2, "| - /hitman");
+			SendClientMessage(playerid, COLOR_YELLOW2, "| - /hitman - /had");
 		}
 		SendClientMessage(playerid, COLOR_YELLOW2, "| - Tagok - Hírdetés");
-		SendClientMessage(playerid, COLOR_YELLOW2, "| - Vérdíjak  - Ruha");
-		SendClientMessage(playerid, COLOR_YELLOW2, "| - Célpontok - Álnév");
-		SendClientMessage(playerid, COLOR_YELLOW2, "| - Rendelés - Bilincs - lenyomoz");
-		SendClientMessage(playerid, COLOR_YELLOW2, "| - Bomba - bombatavol - Munka");
+		SendClientMessage(playerid, COLOR_YELLOW2, "| - Vérdíjak  - Ruha - cian");
+		SendClientMessage(playerid, COLOR_YELLOW2, "| - Célpontok - lenyomoz - Álnév");
+		SendClientMessage(playerid, COLOR_YELLOW2, "| - Rendelés - Bilincs - bombatavol");
+		SendClientMessage(playerid, COLOR_YELLOW2, "| - Bomba - Munka - lenyomoz");
 		ConnectedToPC[playerid] = 255;
 	    return 1;
 	}

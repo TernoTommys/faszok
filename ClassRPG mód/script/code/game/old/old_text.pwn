@@ -1455,6 +1455,12 @@ public OnPlayerText(playerid, text[]) //opt
 
 		if(egyezik(tmp, "munka"))
 		{
+			if(!PlayerToPoint(5.0, playerid, -1438.6412,-1544.8313,102.2578))
+			{
+			SetPlayerCheckpoint(playerid, -1438.6412,-1544.8313,102.2578, 5.0);
+			Msg(playerid, "Nem vagy a hitman HQ-n.")
+			return 1;
+			}
 			new uzi[128];
 			if(HitmanDuty[playerid])
 			{
@@ -1476,6 +1482,8 @@ public OnPlayerText(playerid, text[]) //opt
 
 		if(egyezik(tmp, "ruha"))
 		{
+			new kocsi = GetClosestVehicle(playerid);
+			if(GetPlayerDistanceFromVehicle(playerid, kocsi) > 3.0) return !Msg(playerid, "Csak Jármû mellet.");
 			tmp = strtok(text, idx);
 
 			if(!strlen(tmp))
@@ -1743,11 +1751,11 @@ public OnPlayerText(playerid, text[]) //opt
 			SendClientMessage(playerid, Pink, "* Kikapcsoláshoz: lenyomozás kikapcsol");
 			return 0;
 		}
-	/*	else if ((strcmp("Rendelés", tmp, true, strlen(tmp)) == 0) && (strlen(tmp) == strlen("Rendelés")) || (strcmp("Rendeles", tmp, true, strlen(tmp)) == 0) && (strlen(tmp) == strlen("Rendeles")))
+		else if ((strcmp("Rendelés", tmp, true, strlen(tmp)) == 0) && (strlen(tmp) == strlen("Rendelés")) || (strcmp("Rendeles", tmp, true, strlen(tmp)) == 0) && (strlen(tmp) == strlen("Rendeles")))
 		{
-			if(!PlayerToPoint(5.0, playerid, -1446.7, -1544.3, 101.9))
+			if(!PlayerToPoint(5.0, playerid, -1446.6458,-1545.3087,102.2969))
 			{
-				SetPlayerCheckpoint(playerid, -1446.7, -1544.3, 101.9, 3);
+				SetPlayerCheckpoint(playerid, -1446.6458,-1545.3087,102.2969, 3);
 				Msg(playerid, "Nem vagy a rendelõhelyen");
 				return 0;
 			}
@@ -1776,7 +1784,7 @@ public OnPlayerText(playerid, text[]) //opt
 				{
 					if(GetMoney(playerid) < 90000) return !Msg(playerid, "Ehhez 90,000Ft kell!");
 
-					GiveWeapon(playerid, 24, 100); GiveWeapon(playerid, 29, 300); GiveWeapon(playerid, 25, 100); GiveWeapon(playerid, 4, 1);
+					WeaponGiveWeapon(playerid, 24, 100); WeaponGiveWeapon(playerid, 29, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 4, 1);
 					GiveMoney(playerid, - 90000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1785,7 +1793,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 125000) return !Msg(playerid, "Ehhez 125,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0);
-					GiveWeapon(playerid, 24, 100); GiveWeapon(playerid, 29, 300); GiveWeapon(playerid, 25, 100); GiveWeapon(playerid, 31, 500); GiveWeapon(playerid, 4, 1);
+					WeaponGiveWeapon(playerid, 24, 100); WeaponGiveWeapon(playerid, 29, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 31, 500); WeaponGiveWeapon(playerid, 4, 1);
 					GiveMoney(playerid, - 125000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1794,7 +1802,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 150000) return !Msg(playerid, "Ehhez 150,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0);
-					GiveWeapon(playerid, 24, 100); GiveWeapon(playerid, 29, 300); GiveWeapon(playerid, 25, 100); GiveWeapon(playerid, 30, 500); GiveWeapon(playerid, 4, 1);
+					WeaponGiveWeapon(playerid, 24, 100); WeaponGiveWeapon(playerid, 29, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1);
 					GiveMoney(playerid, - 150000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1803,7 +1811,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 200000) return !Msg(playerid, "Ehhez 200,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0);
-					GiveWeapon(playerid, 24, 100); GiveWeapon(playerid, 29, 300); GiveWeapon(playerid, 25, 100); GiveWeapon(playerid, 31, 500); GiveWeapon(playerid, 4, 1); GiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 24, 100); WeaponGiveWeapon(playerid, 29, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 31, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 200000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1812,7 +1820,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 225000) return !Msg(playerid, "Ehhez 225,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0);
-					GiveWeapon(playerid, 24, 100); GiveWeapon(playerid, 29, 300); GiveWeapon(playerid, 25, 100); GiveWeapon(playerid, 30, 500); GiveWeapon(playerid, 4, 1); GiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 24, 100); WeaponGiveWeapon(playerid, 29, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 225000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1821,7 +1829,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 250000) return !Msg(playerid, "Ehhez 250,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					GiveWeapon(playerid, 24, 100); GiveWeapon(playerid, 29, 300); GiveWeapon(playerid, 27, 100); GiveWeapon(playerid, 31, 500); GiveWeapon(playerid, 4, 1); GiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 24, 100); WeaponGiveWeapon(playerid, 29, 300); WeaponGiveWeapon(playerid, 27, 100); WeaponGiveWeapon(playerid, 31, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 250000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1830,7 +1838,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 275000) return !Msg(playerid, "Ehhez 275,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					GiveWeapon(playerid, 23, 100); GiveWeapon(playerid, 29, 300); GiveWeapon(playerid, 25, 100); GiveWeapon(playerid, 30, 500); GiveWeapon(playerid, 4, 1); GiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 29, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 275000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1839,7 +1847,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 300000) return !Msg(playerid, "Ehhez 300,000 kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					GiveWeapon(playerid, 23, 100); GiveWeapon(playerid, 32, 300); GiveWeapon(playerid, 25, 10); GiveWeapon(playerid, 30, 500); GiveWeapon(playerid, 4, 1); GiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 32, 300); WeaponGiveWeapon(playerid, 25, 10); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 300000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1848,7 +1856,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 325000) return !Msg(playerid, "Ehhez 325,000 kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					GiveWeapon(playerid, 23, 100); GiveWeapon(playerid, 32, 300); GiveWeapon(playerid, 25, 100); GiveWeapon(playerid, 30, 500); GiveWeapon(playerid, 4, 1); GiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 32, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 325000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1857,7 +1865,7 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 350000) return !Msg(playerid, "Ehhez 350,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					GiveWeapon(playerid, 23, 100); GiveWeapon(playerid, 32, 300); GiveWeapon(playerid, 26, 100); GiveWeapon(playerid, 30, 500); GiveWeapon(playerid, 4, 1); GiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 32, 300); WeaponGiveWeapon(playerid, 26, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 350000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
@@ -1903,7 +1911,7 @@ public OnPlayerText(playerid, text[]) //opt
 					}
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					GiveWeapon(playerid, f, loszer);
+					WeaponGiveWeapon(playerid, f, loszer);
 					GiveMoney(playerid, - 30000);
 					SendFormatMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt fegyvert: %s", aWeaponNames[f]);
 				}
@@ -1911,7 +1919,7 @@ public OnPlayerText(playerid, text[]) //opt
 					Msg(playerid, "Nincs ilyen csomag");
 			}
 			return 0;
-		}*/
+		}
 		else if((strcmp("Kikapcsol", tmp, true, strlen(tmp)) == 0) && (strlen(tmp) == strlen("Kikapcsol")))
 		{
 		    SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Kikapcsoltad a laptopodat.");
@@ -1922,7 +1930,7 @@ public OnPlayerText(playerid, text[]) //opt
 		{
 		    SendClientMessage(playerid, COLOR_WHITE, "====[ Laptop ]====");
 			SendClientMessage(playerid, COLOR_YELLOW2, "| - Tagok - Hírdetés");
-			SendClientMessage(playerid, COLOR_YELLOW2, "| - Vérdíjak  - Ruha");
+			SendClientMessage(playerid, COLOR_YELLOW2, "| - Vérdíjak  - Ruha - cian");
 			SendClientMessage(playerid, COLOR_YELLOW2, "| - Célpontok - lenyomoz - Álnév");
 			SendClientMessage(playerid, COLOR_YELLOW2, "| - Rendelés - Bilincs - bombatavol");
 			SendClientMessage(playerid, COLOR_YELLOW2, "| - Bomba - Munka - lenyomoz");
