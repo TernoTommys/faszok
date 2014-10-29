@@ -18339,7 +18339,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	}
 	if(egyezik(cmd, "/cheatarmor") || egyezik(cmd, "/carmor"))
 	{
-		if(!SAdmin(playerid, 1)) return 1;
+		if(!SAdmin(playerid, 1) && !IsScripter(playerid)) return 1;
 
 		if(params < 2)
 			return Msg(playerid, "Használata: /cheatarmor [játékos] [+ vagy -] > Levesz vagy hozzáad a játékos páncéljához 1et");
@@ -18382,7 +18382,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 	if(egyezik(cmd, "/cheathp") || egyezik(cmd, "/chp"))
 	{
-		if(!SAdmin(playerid, 1)) return 1;
+		if(!SAdmin(playerid, 1) && !IsScripter(playerid)) return 1;
 
 		if(params < 2)
 			return Msg(playerid, "Használata: /cheathp [játékos] [+ vagy -] > Levesz vagy hozzáad a játékos életéhez 1et");
@@ -21294,7 +21294,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	}
 	if(egyezik(cmd, "/objectinfo"))
 	{
-		if(!SAdmin(playerid, 2))
+		if(!SAdmin(playerid, 2) && !IsScripter(playerid))
 		    return SendClientMessage(playerid, COLOR_LIGHTRED, "[Hiba]: Ezt a parancsot nem használhatod!");
 		    
         if(params != 1 && SAdmin(playerid, 1337) || params != 1 && IsScripter(playerid))
@@ -30392,7 +30392,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	{
 		if(!Admin(playerid, 1) && !IsScripter(playerid)) return Msg(playerid, "[Hiba]: Nem használhatod!");
 		new car = NINCS;
-		if(SAdmin(playerid, 3))
+		if(SAdmin(playerid, 3) || IsScripter(playerid))
   		{
 			sscanf(pms, "D(-1)", car);
 		}
@@ -30401,7 +30401,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 		if(car == NINCS)
 		{
-		    if(!SAdmin(playerid, 3)) return SendClientMessage(playerid,COLOR_LIGHTRED, "[Hiba]: Nincs a közeledben jármû! A távoli parkolás pedig nem engedélyezett ezen az Adminszinten!");
+		    if(!SAdmin(playerid, 3) && !IsScripter(playerid)) return SendClientMessage(playerid,COLOR_LIGHTRED, "[Hiba]: Nincs a közeledben jármû! A távoli parkolás pedig nem engedélyezett ezen az Adminszinten!");
 			else return SendClientMessage(playerid,COLOR_GREEN, "Nincs a közeledben jármû! /apark [JármûID] ( Távoli parkolásnál INT 0-ban és VW 0-ban kell, hogy legyen! )");
 		}
         new Float:x,Float:y,Float:z, Float:a, vs = IsAVsKocsi(car), fk = IsFrakcioKocsi(car), munkakocsi = IsMunkaKocsi(car), panelek, ajto, vilagitas, gumi, Float:elet;
@@ -30421,7 +30421,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		else if(fk > NINCS)
 		{
-		    if(!SAdmin(playerid, 3)) return SendClientMessage(playerid,COLOR_LIGHTRED, "[Hiba]: Nincs elegendõ Adminszinted a frakciós jármûvek parkolásához!");
+		    if(!SAdmin(playerid, 3) && !IsScripter(playerid)) return SendClientMessage(playerid,COLOR_LIGHTRED, "[Hiba]: Nincs elegendõ Adminszinted a frakciós jármûvek parkolásához!");
 		    new id = NINCS;
 			for(new k = 0; k < MAX_FRAKCIOKOCSI; k++)
 			{
@@ -30454,7 +30454,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		else if(munkakocsi > NINCS)
 		{
-			if(!SAdmin(playerid, 3)) return SendClientMessage(playerid,COLOR_LIGHTRED, "[Hiba]: Nincs elegendõ Adminszinted a munka jármûvek parkolásához!");
+			if(!SAdmin(playerid, 3) && !IsScripter(playerid)) return SendClientMessage(playerid,COLOR_LIGHTRED, "[Hiba]: Nincs elegendõ Adminszinted a munka jármûvek parkolásához!");
 			
 			new id = NINCS;
 			for(new k = 0; k < MAX_MUNKAKOCSI; k++)
@@ -32138,7 +32138,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			new Float:x, Float:y, Float:z;
 			GetPlayerPos(playerid, x, y, z);
 			new felirat[80];
-			if(Admin(playerid, 5599))
+			if(SAdmin(playerid, 5599))
 			{
 				if(pmoff)
 				{
@@ -32155,7 +32155,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				SetPlayerColor(playerid, COLOR_TULAJDONOS);//COLOR_LIMECOLOR_DBLUE
 				return 1;
 			}
-			else if(Admin(playerid, 5577))
+			else if(SAdmin(playerid, 5577))
 			{
 				if(pmoff)
 				{
@@ -32172,7 +32172,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				SetPlayerColor(playerid, COLOR_TEAMCONTROLLER);//COLOR_LIMECOLOR_DBLUE
 				return 1;
 			}
-			else if(Admin(playerid, 1350))
+			else if(SAdmin(playerid, 1350))
 			{
 				if(pmoff)
 				{
@@ -32188,7 +32188,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_FOADMINKEK, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
 				SetPlayerColor(playerid, COLOR_FOADMINKEK);//COLOR_LIMECOLOR_DBLUE
 			}
-			else if(Admin(playerid, 1337))
+			else if(SAdmin(playerid, 1337))
 			{
 				if(pmoff)
 				{
@@ -40465,7 +40465,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	
 	if(egyezik(cmd, "/setstat"))
 	{
-		if(!SAdmin(playerid, 1337)) return 1;
+		if(!SAdmin(playerid, 1337) && !IsScripter(playerid)) return 1;
 		if(params < 3)
 		{
 			SendClientMessage(playerid, COLOR_WHITE, "Használat: /setstat [Játékos] [statcode] [Érték]");
@@ -40692,7 +40692,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	}
 	if(egyezik(cmd, "/kocsikulcs"))
 	{
-		if(!SAdmin(playerid, 1337)) return true;
+		if(!SAdmin(playerid, 1337) && !IsScripter(playerid)) return true;
 		new jatekos, slot, jarmu, vs, vid;
 		if(sscanf(pms, "udD(-1)", jatekos,slot,jarmu))
 			return SendClientMessage(playerid, COLOR_WHITE, "Használat: /kocsikulcs [Játékos] [Slot(1-3)] [JármûID (Ha nem adsz meg értéket elveszi)]");
@@ -40768,7 +40768,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 	if(egyezik(cmd, "/házkulcs") || egyezik(cmd, "/hazkulcs"))
 	{
-		if(!SAdmin(playerid, 1337)) return true;
+		if(!SAdmin(playerid, 1337) && !IsScripter(playerid)) return true;
 		new jatekos, slot, haz, hid;
 		if(sscanf(pms, "udD(-1)", jatekos,slot,haz))
 			return SendClientMessage(playerid, COLOR_WHITE, "Használat: /hazkulcs [Játékos] [Slot(1-3)] [Házszám (Ha nem adsz meg értéket elveszi)]");
