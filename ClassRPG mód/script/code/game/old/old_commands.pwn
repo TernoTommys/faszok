@@ -32138,6 +32138,23 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			new Float:x, Float:y, Float:z;
 			GetPlayerPos(playerid, x, y, z);
 			new felirat[80];
+			if(IsScripter(playerid))
+			{
+				if(pmoff)
+				{
+					SendFormatMessageToAll(COLOR_FOADMINKEK, "[%d]%s %s szolgálatba lépett, így írhatsz neki (/report join 1 és /ü) | Megölni tilos!", playerid, AdminRangNev(playerid), AdminName(playerid));
+					format(felirat, 128, "SCRIPTERADMIN SZOLGÁLAT\n%s\n/report join 2 és /ü", PlayerName(playerid), playerid);
+				}
+				else
+				{
+					SendFormatMessageToAll(COLOR_FOADMINKEK, "[%d]%s %s szolgálatba lépett, így írhatsz neki (/pm %d) | Megölni tilos!", playerid, AdminRangNev(playerid), AdminName(playerid), playerid);
+					format(felirat, 128, "SCRIPTERADMIN SZOLGÁLAT\n%s\n/pm %d\n", PlayerName(playerid), playerid);
+				}
+
+				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TULAJDONOS, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
+				SetPlayerColor(playerid, COLOR_FOADMINKEK);//COLOR_LIMECOLOR_DBLUE
+				return 1;
+			}
 			if(SAdmin(playerid, 5599))
 			{
 				if(pmoff)
@@ -32152,7 +32169,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				}
 
 				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_TULAJDONOS, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
-				SetPlayerColor(playerid, COLOR_TULAJDONOS);//COLOR_LIMECOLOR_DBLUE
+				SetPlayerColor(playerid, COLOR_FOADMINKEK);//COLOR_LIMECOLOR_DBLUE
 				return 1;
 			}
 			else if(SAdmin(playerid, 5577))

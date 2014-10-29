@@ -19898,8 +19898,8 @@ stock PreConfigure( playerid, fazis = 0 )
 		{
 			SQLID(playerid) = sql_get_int(0);
 			Registered(playerid) = 2;
-			//SendClientMessage(playerid, COLOR_LIGHTBLUE, "ClassRPG: Regisztrálva vagy. Használd a /login parancsot a belépéshez");
-			SendClientMessage(playerid, COLOR_LIGHTBLUE, "ClassRPG: Regisztrálva vagy. Amennyiben a kliens aktív, a rendszer automatikusan beléptet, légy türelemmel!");
+			SendClientMessage(playerid, COLOR_LIGHTBLUE, "ClassRPG: Regisztrálva vagy. Használd a /login parancsot a belépéshez");
+			//SendClientMessage(playerid, COLOR_LIGHTBLUE, "ClassRPG: Regisztrálva vagy. Amennyiben a kliens aktív, a rendszer automatikusan beléptet, légy türelemmel!");
 			format( _tmpString, 128, "SELECT ID FROM %s WHERE karakterek > 0 AND karakter1='%d' OR karakterek > 1 AND karakter2='%d'", SQL_DB_Account, SQLID(playerid), SQLID(playerid));
 			doQuery( _tmpString, SQL_PLAYER_PRECONFIGURE, playerid, 3 );
 		}
