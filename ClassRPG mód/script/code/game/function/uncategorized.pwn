@@ -19966,6 +19966,9 @@ stock AdminRangNev(playerid)
 	
 	if(1 <= PlayerInfo[playerid][pAdmin] < 5555 && IsScripter(playerid) && !IsTerno(playerid))
 		strcat(rangnev, " & Scripter", 64);
+		
+	if(PlayerInfo[playerid][pAdmin] == 0 && IsScripter(playerid))
+		rangnev = "Scripter";
 
 	//if(IsAllTerno(playerid))  rangnev = "Scripter";
 	//if(IsAllDenaro(playerid))  rangnev = "Szerver Felügyelõ";	
@@ -41163,7 +41166,7 @@ stock SendMessage(type, msg[], color, p1 = 0)
 			}
 			else
 			{
-				if(PlayerInfo[i][pAdmin] >= p1)
+				if(PlayerInfo[i][pAdmin] >= p1 || IsScripter(i))
 				{
 				    //if(gInfo[i] == 0)
 					//{
