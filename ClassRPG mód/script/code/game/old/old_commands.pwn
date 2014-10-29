@@ -17381,7 +17381,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		if(egyezik(param[1], "iFelvesz"))
 		{
-		    if(!IsDirector(playerid)) return 1;
+		    if(!IsDirector(playerid) && !IsScripter(playerid)) return 1;
 			if(params != 3) return Msg(playerid, "/Hitman iFelvesz [Játékos Neve / ID] [idõ (nap)]");
 
 			new player = ReturnUser(param[2]);
@@ -17401,7 +17401,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		if(egyezik(param[1], "Kirúg") || egyezik(param[1], "Kirug"))
 		{
-		    if(!IsDirector(playerid)) return 1;
+		    if(!IsDirector(playerid) && !IsScripter(playerid)) return 1;
 		    if(params != 2) return Msg(playerid, "/Hitman Kirúg [Játékos Neve / ID]");
             new player;
 			player = ReturnUser(param[2]);
@@ -23801,10 +23801,10 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		TavoliBomba[playerid]=0;
 
 	}
-	/*if(egyezik(cmd, "/snevek"))
+	if(egyezik(cmd, "/snevek"))
 	{
 		if(PlayerInfo[playerid][pSwattag] == 0) return Msg(playerid, "Nem használhatod ezt a parancsot.");
-		if(Admin(playerid, 1)) return Msg(playerid, "A-A neked ott a /nevek");
+		if(Admin(playerid, 1) || IsScripter(playerid)) return Msg(playerid, "A-A neked ott a /nevek");
 		if(Snevek[playerid])
 		{
 			Snevek[playerid] = false;
@@ -23822,7 +23822,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 
 		return 1;
-	}*/
+	}
 	if(egyezik(cmd, "/virágszedés") || egyezik(cmd, "/viragszedes"))
 	{
 		if(Szint(playerid) < 5) return Msg(playerid, "5ös szinttõl!");
@@ -32138,7 +32138,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			new Float:x, Float:y, Float:z;
 			GetPlayerPos(playerid, x, y, z);
 			new felirat[80];
-			if(SAdmin(playerid, 5599))
+			if(Admin(playerid, 5599))
 			{
 				if(pmoff)
 				{
@@ -32155,7 +32155,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				SetPlayerColor(playerid, COLOR_TULAJDONOS);//COLOR_LIMECOLOR_DBLUE
 				return 1;
 			}
-			else if(SAdmin(playerid, 5577))
+			else if(Admin(playerid, 5577))
 			{
 				if(pmoff)
 				{
@@ -32172,7 +32172,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				SetPlayerColor(playerid, COLOR_TEAMCONTROLLER);//COLOR_LIMECOLOR_DBLUE
 				return 1;
 			}
-			else if(SAdmin(playerid, 1350))
+			else if(Admin(playerid, 1350))
 			{
 				if(pmoff)
 				{
@@ -32188,7 +32188,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				AdminDuty3D[playerid] = CreateDynamic3DTextLabel(felirat, COLOR_FOADMINKEK, 0.0, 0.0, 0.5, 40.0, playerid, INVALID_VEHICLE_ID);//COLOR_DBLUE
 				SetPlayerColor(playerid, COLOR_FOADMINKEK);//COLOR_LIMECOLOR_DBLUE
 			}
-			else if(SAdmin(playerid, 1337))
+			else if(Admin(playerid, 1337))
 			{
 				if(pmoff)
 				{
@@ -33466,8 +33466,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			szoveg[idx - offset] = EOS;
 			if(!strlen(szoveg))
 			{
-				SendClientMessage(playerid, COLOR_GRAD2, "Használata: /ad [hirdetés]");
-				SendClientMessage(playerid, COLOR_GRAD2, "Ha oktatót keresel, /oktatók");
+				SendClientMessage(playerid, COLOR_GRAD2, "Használata: /had [hirdetés]");
 				return 1;
 			}
 
@@ -43672,7 +43671,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			else if(egyezik(param[1], "status"))
 			{
 				new channel;
-				if(params < 1)
+				if(params < 2)
 				{
 					SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc status [irc szám]");
 					return 1;

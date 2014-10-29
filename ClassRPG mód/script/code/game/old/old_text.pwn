@@ -1459,7 +1459,7 @@ public OnPlayerText(playerid, text[]) //opt
 			{
 			SetPlayerCheckpoint(playerid, -1438.6412,-1544.8313,102.2578, 5.0);
 			Msg(playerid, "Nem vagy a hitman HQ-n.");
-			return 1;
+			return 0;
 			}
 			new uzi[128];
 			if(HitmanDuty[playerid])
@@ -1764,16 +1764,16 @@ public OnPlayerText(playerid, text[]) //opt
 			{
 			    SendClientMessage(playerid, COLOR_WHITE, "|__________________ Fegyver csomagok __________________|");
 				SendClientMessage(playerid, COLOR_GREY, "|(1) (90,000Ft) Kés, Deagle, MP5, Shotgun");
-				SendClientMessage(playerid, COLOR_GREY, "|(2) (125,000Ft) Péncél, Kés, Deagle, M4, MP5, Shotgun");
-				SendClientMessage(playerid, COLOR_GREY, "|(3) (150,000Ft) Péncél, Kés, Deagle, AK47, MP5, Shotgun");
-				SendClientMessage(playerid, COLOR_GREY, "|(4) (200,000Ft) Péncél, Kés, Deagle, M4, MP5, Shotgun, Távcsöves");
-				SendClientMessage(playerid, COLOR_GREY, "|(5) (225,000Ft) Péncél, Kés, Deagle, AK47, MP5, Shotgun, Távcsöves");
-				SendClientMessage(playerid, COLOR_GREY, "|(6) (250,000Ft) Süti, Péncél, Kés, Deagle, M4, MP5, Shotgun, Távcsöves");
-				SendClientMessage(playerid, COLOR_GREY, "|(7) (275,000Ft) Süti, Péncél, Kés, Hangtompitós, AK47, MP5, Shotgun, Távcsöves");
-				SendClientMessage(playerid, COLOR_GREY, "|(8) (300,000Ft) Süti, Péncél, Kés, Hangtompitós, AK47, Tec 9, Shotgun, Távcsöves");
-				SendClientMessage(playerid, COLOR_GREY, "|(9) (325,000Ft) Süti, Péncél, Kés, Hangtompitós, AK47, Tec 9, Shotgun, Távcsöves");
-				SendClientMessage(playerid, COLOR_GREY, "|(10) (350,000Ft) Süti, Péncél, Kés, Hangtompitós, AK47, Tec 9, Sörétes, Távcsöves");
-				SendClientMessage(playerid, COLOR_GREY, "|(X) (30000Ft) Süti, Péncél + Egyéni fegyver > \"rendelés x [fegyver]\"");
+				SendClientMessage(playerid, COLOR_GREY, "|(2) (125,000Ft) Páncél, Kés, Deagle, M4, MP5, Shotgun");
+				SendClientMessage(playerid, COLOR_GREY, "|(3) (150,000Ft) Páncél, Kés, Deagle, AK47, MP5, Shotgun");
+				SendClientMessage(playerid, COLOR_GREY, "|(4) (200,000Ft) Páncél, Kés, Deagle, M4, MP5, Shotgun, Távcsöves");
+				SendClientMessage(playerid, COLOR_GREY, "|(5) (225,000Ft) Páncél, Kés, Deagle, AK47, MP5, Shotgun, Távcsöves");
+				SendClientMessage(playerid, COLOR_GREY, "|(6) (250,000Ft) Páncél, Kés, Deagle, M4, MP5, Shotgun, Távcsöves");
+				SendClientMessage(playerid, COLOR_GREY, "|(7) (275,000Ft) Páncél, Kés, Hangtompítós, AK47, MP5, Shotgun, Távcsöves");
+				SendClientMessage(playerid, COLOR_GREY, "|(8) (300,000Ft) Páncél, Kés, Hangtompítós, AK47, Shotgun, Távcsöves");
+				SendClientMessage(playerid, COLOR_GREY, "|(9) (350,000Ft) Páncél, Kés, Hangtompítós, M4, Shotgun, Távcsöves");
+				SendClientMessage(playerid, COLOR_GREY, "|(10) (400,000Ft) Páncél, Kés, Hangtompítós, AK47, Távcsöves");
+				SendClientMessage(playerid, COLOR_GREY, "|(X) (30000Ft) Páncél + Egyéni fegyver > \"rendelés x [fegyver]\"");
 			    SendClientMessage(playerid, COLOR_WHITE, "|________________________________________________________|");
 				return 0;
 			}
@@ -1847,26 +1847,26 @@ public OnPlayerText(playerid, text[]) //opt
 					if(GetMoney(playerid) < 300000) return !Msg(playerid, "Ehhez 300,000 kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 32, 300); WeaponGiveWeapon(playerid, 25, 10); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
+					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 25, 10); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
 					GiveMoney(playerid, - 300000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
 				case 9:
 				{
-					if(GetMoney(playerid) < 325000) return !Msg(playerid, "Ehhez 325,000 kell!");
+					if(GetMoney(playerid) < 350000) return !Msg(playerid, "Ehhez 350,000 kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 32, 300); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
-					GiveMoney(playerid, - 325000);
+					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 25, 100); WeaponGiveWeapon(playerid, 31, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
+					GiveMoney(playerid, - 350000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
 				case 10:
 				{
-					if(GetMoney(playerid) < 350000) return !Msg(playerid, "Ehhez 350,000Ft kell!");
+					if(GetMoney(playerid) < 400000) return !Msg(playerid, "Ehhez 400,000Ft kell!");
 
 					SetPlayerArmour(playerid, 150.0); SetHealth(playerid, MAXHP);
-					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 32, 300); WeaponGiveWeapon(playerid, 26, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
-					GiveMoney(playerid, - 350000);
+					WeaponGiveWeapon(playerid, 23, 100); WeaponGiveWeapon(playerid, 30, 500); WeaponGiveWeapon(playerid, 4, 1); WeaponGiveWeapon(playerid, 34, 100);
+					GiveMoney(playerid, - 400000);
 					SendClientMessage(playerid, COLOR_LIGHTBLUE, "* Felvetted a megrendelt csomagot!");
 				}
 				case 0:
