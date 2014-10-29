@@ -33490,7 +33490,6 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				return 1;
 			}
 			BizPenz(BIZ_HIRDETES, ara);
-			new telefonszam = PlayerInfo[playerid][pPnumber];
 			format(hirdetes, sizeof(hirdetes), "Hirdetés: %s | Hirdetõ: Hitman",  szoveg);
 
 			SendClientMessageToAll(TEAM_GROVE_COLOR, hirdetes);
@@ -43675,8 +43674,8 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				new channel;
 				if(params < 1)
 				{
-				SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc status [irc szám]");
-				return 1;
+					SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc status [irc szám]");
+					return 1;
 				}
 			    if(sscanf(pms, "{s[32]}D(-1)", channel))
 				{
@@ -44048,7 +44047,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				if(params < 1)
 				{
 					SendClientMessage(playerid, COLOR_WHITE, "Használat: /irc admin(s) [irc szám]");
-				return 1;
+					return 1;
 				}
 			    if(sscanf(pms, "{s[32]}D(-1)", channel))
 				{

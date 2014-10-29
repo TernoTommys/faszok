@@ -1458,7 +1458,7 @@ public OnPlayerText(playerid, text[]) //opt
 			if(!PlayerToPoint(5.0, playerid, -1438.6412,-1544.8313,102.2578))
 			{
 			SetPlayerCheckpoint(playerid, -1438.6412,-1544.8313,102.2578, 5.0);
-			Msg(playerid, "Nem vagy a hitman HQ-n.")
+			Msg(playerid, "Nem vagy a hitman HQ-n.");
 			return 1;
 			}
 			new uzi[128];
