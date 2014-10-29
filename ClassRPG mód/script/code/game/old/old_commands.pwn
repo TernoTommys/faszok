@@ -34332,7 +34332,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 					else if(rang >= 1 && rang <= r) rangnev = Rangok[munka][rang];
 					else rangnev = Rangok[munka][r];
 					format(string, sizeof(string), "** %s %s: %s, vége **", rangnev, sendername, result);
-					SendMessage(SEND_MESSAGE_RADIO, string, COLOR_CIAVILAGOSKEK,munka+1);
+					SendMessage(SEND_MESSAGE_RADIO, string, TEAM_BLUE_COLOR,munka+1);
 					printf("%s", string);
 					format(string, sizeof(string), "[Rádió]%s mondja: %s", sendername, result);
 					ProxDetector(20.0, playerid, string,COLOR_FADE1,COLOR_FADE2,COLOR_FADE3,COLOR_FADE4,COLOR_FADE5);
@@ -34345,7 +34345,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 					else if(rang >= 1 && rang <= r) rangnev = Rangok[munka][rang];
 					else rangnev = Rangok[munka][r];
 					format(string, sizeof(string), "** %s %s: %s, vége **", rangnev, sendername, result);
-					SendMessage(SEND_MESSAGE_RADIO, string, COLOR_CIAKEK,munka+1);
+					SendMessage(SEND_MESSAGE_RADIO, string, TEAM_BLUE_COLOR,munka+1);
 					printf("%s", string);
 					format(string, sizeof(string), "[Rádió]%s mondja: %s", sendername, result);
 					ProxDetector(20.0, playerid, string,COLOR_FADE1,COLOR_FADE2,COLOR_FADE3,COLOR_FADE4,COLOR_FADE5);
@@ -34495,7 +34495,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 					else rangnev = Rangok[munka][r];
 
 					format(string, sizeof(string), "** %s %s OOC: (( %s )) **", rangnev, sendername, result);
-					SendMessage(SEND_MESSAGE_RADIO, string, COLOR_CIAVILAGOSKEK,munka+1);
+					SendMessage(SEND_MESSAGE_RADIO, string, TEAM_BLUE_COLOR,munka+1);
 					//SendRadioMessageFormat(munka+1, Pink, "** %s %s OOC: (( %s )) **", rangnev, sendername, result);
 					printf("%s", string);
 					format(string, sizeof(string), "[Rádió]%s mondja OOC: (( %s ))", sendername, result);
@@ -34509,7 +34509,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 					else if(rang >= 1 && rang <= r) rangnev = Rangok[munka][rang];
 					else rangnev = Rangok[munka][r];
 					format(string, sizeof(string), "** %s %s mondja OOC: (( %s )), vége **", rangnev, sendername, result);
-					SendMessage(SEND_MESSAGE_RADIO, string, COLOR_CIAKEK,munka+1);
+					SendMessage(SEND_MESSAGE_RADIO, string, TEAM_BLUE_COLOR,munka+1);
 					//SendRadioMessageFormat(munka+1, Pink2, "** %s %s mondja OOC: (( %s )) **", rangnev, sendername, result);
 					printf("%s", string);
 					format(string, sizeof(string), "[Rádió]%s mondja OOC: (( %s ))", sendername, result);
