@@ -22158,6 +22158,12 @@ fpublic IdojarasValtozas()
 	
 	MunkaKocsiMentes();
 	
+	if(IsHalloWeen)
+	{
+	LoadVersion();
+	return 1;
+	}
+	
 	new idojaras[128];
 	new idojarasok[14] = {
 		0,	// Tiszta

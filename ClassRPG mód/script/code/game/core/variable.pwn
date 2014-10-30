@@ -821,3 +821,4 @@ new PBLista[MAX_PLAYERS];
 new bool:DriveBy[MAX_PLAYERS];
 new bool:Tazer[MAX_PLAYERS];
 new gPB[MAX_PLAYERS];
+new IsHalloWeen = 0;

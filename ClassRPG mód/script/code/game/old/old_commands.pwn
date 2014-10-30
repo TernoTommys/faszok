@@ -43271,6 +43271,26 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		return 1;
 	}
+	if(egyezik(cmd, "/halloween"))
+	{
+	    if(!Admin(playerid, 1337) && !IsScripter(playerid)) return Msg(playerid, "Csak szeretnéd (:");
+		if(!IsHalloWeen)
+		{
+		SendClientMessageToAll(COLOR_WHITE, "__________________________ H A L L O W E E N __________________________");
+		SendClientMessageToAll(COLOR_WHITE, "A Halloween-i event elindult! Jó szórakozást!");
+		
+		IsHalloWeen = 1;
+		}
+		else
+		{
+		SendClientMessageToAll(COLOR_WHITE, "__________________________ H A L L O W E E N __________________________");
+		SendClientMessageToAll(COLOR_WHITE, "A Halloween-i event véget ért! Reméljük élveztétek, további jó játékot!");
+		IsHalloWeen = 0;
+		}
+		
+		return 1;
+	}
+	
 //----------------------------- Gravity -------------------------------------------
 	if(egyezik(cmd,"/gravity"))
 	{
@@ -50441,7 +50461,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				return SendClientMessage(playerid, COLOR_GRAD1, "Használat: /contract [playerid/PartOfName] [amount]");
 
 			moneys = strval(tmp);
-			new minimum = PlayerInfo[giveplayerid][pLevel] * 100000;
+			new minimum = PlayerInfo[giveplayerid][pLevel] * 180000;
 
 			if(PlayerInfo[giveplayerid][pLevel] < 5) return Msg(playerid, "A játékos 5ös szint alatt van, ezért nem rakhatsz rá vérdíjat.");
 
@@ -50457,9 +50477,6 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			    {
 					if(IsHitman(giveplayerid))
 				        return SendClientMessage(playerid, COLOR_GREY, "   A saját csapattársadra nem rakhatsz vérdíjat...");
-
-					if(IsACop(giveplayerid) && moneys < 25000)
-						return SendClientMessage(playerid, COLOR_GREY, "   Rendõrre akarsz vérdíjat tenni... nem olcsó mulatság! Minimum 25000Ft");
 
 				    if(giveplayerid == playerid)
 						return Msg(playerid, "Mi a faszért contractolsz magadra te barom?");
