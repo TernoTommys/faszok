@@ -26852,8 +26852,11 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			format(string, sizeof(string), "**Légiirányítás: %s: %s, vége**", ICPlayerName(playerid), result);
 		else if(IsACopCar(tmpcar))
 			format(string, sizeof(string), "** Rendõrség: %s: %s, vége**", ICPlayerName(playerid), result);
-		else
+		else if(IsHydraOrHunter(tmpcar))
+			format(string, sizeof(string), "** Légierõ: %s: %s, vége**", ICPlayerName(playerid), result);
+		else if(IsARepulo(tmpcar))
 			format(string, sizeof(string), "** Pilóta: %s: %s, vége**", ICPlayerName(playerid), result);
+
 			
 		SendMessage(SEND_MESSAGE_RADIO_REPULO, string, TEAM_BLUE_COLOR);
 		return 1;
@@ -36801,7 +36804,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 						return Msg(playerid, "Már hívtál tûzoltót!");
 
 					Mobile[playerid] = 1005;
-					SendClientMessage(playerid, COLOR_ALLDEPT, "Üdvözlöm, itt a Class City Fire Department. Kérem mondja el mi történt!");
+					SendClientMessage(playerid, COLOR_ALLDEPT, "Üdvözlöm, itt a San Fierro Fire Department. Kérem mondja el mi történt!");
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USECELLPHONE);
 					return 1;
 				}

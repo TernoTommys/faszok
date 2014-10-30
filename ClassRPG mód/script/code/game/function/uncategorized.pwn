@@ -23482,6 +23482,19 @@ fpublic IsAPancelozottKocsi(carid)
 	}
 	return 0;
 }
+fpublic IsHydraOrHunter(carid)
+{
+	new c = GetVehicleModel(carid);
+	switch(c)
+	{
+		case
+			425, // Hunter
+			520 // Hydra
+		:
+		return 1;
+	}
+	return 0;
+}
 stock bool:EzzelShockolhat(carid)
 {
     if(IsABoat(carid) || IsABicikli(carid)) return false;

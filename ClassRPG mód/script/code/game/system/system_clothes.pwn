@@ -83,11 +83,13 @@ stock SkinDataRecalculate()
 	SkinData[33]  = -6876;		// Denaro
 	SkinData[47]  = -8176234; 	// Edie
 	SkinData[94]  = -6122; 		// John
-	SkinData[217] = -1; 		// Clint
+	SkinData[217] = -8183364; 	// Krisztofer
 	SkinData[289] = -234; 		// Terno
 	SkinData[299] = -5637; 		// Dolph
-	SkinData[179] = -8181898; 		// Marcell
-	
+	SkinData[179] = -8181898; 	// Marcell
+	SkinData[82] = -8175449; 	// Ryan
+	SkinData[202] = -2326; 		// FiredNox
+	 
 	for(new i = 1; i < MAX_SKIN; i++)
 	{
 		if(SkinData[i] < 0)
