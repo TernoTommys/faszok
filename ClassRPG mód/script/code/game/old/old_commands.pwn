@@ -33910,7 +33910,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			}
 			else if(egyezik(param[2],"taktikus"))	
 			{
-				if(PlayerInfo[playerid][pSwatRang] != 5) return Msg(playerid,"Nem használhatod");
+				if(PlayerInfo[playerid][pSwatRang] < 5) return Msg(playerid,"Nem használhatod");
 				if(taktikus == 0)
 				{
 					GetPlayerName(playerid, sendername, sizeof(sendername));
@@ -50441,9 +50441,9 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 				return SendClientMessage(playerid, COLOR_GRAD1, "Használat: /contract [playerid/PartOfName] [amount]");
 
 			moneys = strval(tmp);
-			new minimum = PlayerInfo[giveplayerid][pLevel] * 2000;
+			new minimum = PlayerInfo[giveplayerid][pLevel] * 100000;
 
-			if(PlayerInfo[giveplayerid][pLevel] < 3) return Msg(playerid, "A játékos 3as szint alatt van, ezért nem rakhatsz rá vérdíjat.");
+			if(PlayerInfo[giveplayerid][pLevel] < 5) return Msg(playerid, "A játékos 5ös szint alatt van, ezért nem rakhatsz rá vérdíjat.");
 
 			if(moneys < minimum)
 			{

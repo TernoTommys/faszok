@@ -2436,7 +2436,7 @@ public OnPlayerText(playerid, text[]) //opt
 					{
 						case 1: format(string, 128, "[Jármûben] %s mondja: %s", sendername, text);
 						case 2: format(string, 128, "[Jármûbõl] %s mondja: %s", sendername, text);
-						case 3: format(string, 128, "[Kendõ/Maszk] %s mondja: %s", sendername, text);
+						case 3: format(string, 128, "[Kendõ/Maszk]IDK: %d mondja: %s", PlayerInfo[playerid][pBID], text);
 						default: format(string, 128, "%s mondja: %s", sendername, text);
 					}
 
@@ -2451,7 +2451,7 @@ public OnPlayerText(playerid, text[]) //opt
 					{
 						case 1: format(string, 128, "[Jármûben] %s mondja: %s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]), text);
 						case 2: format(string, 128, "[Jármûbõl] %s mondja: %s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]), text);
-						case 3: format(string, 128, "[Kendõ/Maszk] %s mondja: %s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]), text);
+						case 3: format(string, 128, "[Kendõ/Maszk]IDK: %d mondja: %s", PlayerInfo[playerid][pBID], text);
 						default: format(string, 128, "%s mondja: %s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]), text);
 					}
 				}
@@ -2466,7 +2466,7 @@ public OnPlayerText(playerid, text[]) //opt
 					{
 						case 1: format(string, 128, "[Jármûben] %s mondja%%s: %%s", sendername);
 						case 2: format(string, 128, "[Jármûbõl] %s mondja%%s: %%s", sendername);
-						case 3: format(string, 128, "[Kendõ/Maszk] %s mondja%%s: %%s", sendername);
+						case 3: format(string, 128, "[Kendõ/Maszk]IDK: %d mondja%%s: %%s", PlayerInfo[playerid][pBID]);
 						default: format(string, 128, "%s mondja%%s: %%s", sendername);
 					}
 
@@ -2481,7 +2481,7 @@ public OnPlayerText(playerid, text[]) //opt
 					{
 						case 1: format(string, 128, "[Jármûben] %s mondja%%s: %%s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]));
 						case 2: format(string, 128, "[Jármûbõl] %s mondja%%s: %%s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]));
-						case 3: format(string, 128, "[Kendõ/Maszk] %s mondja%%s: %%s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]));
+						case 3: format(string, 128, "[Kendõ/Maszk]IDK: %d mondja%%s: %%s", PlayerInfo[playerid][pBID]);
 						default: format(string, 128, "%s mondja%%s: %%s", ICPlayerNameString(PlayerInfo[playerid][pHamisNev]));
 					}
 				}

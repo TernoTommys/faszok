@@ -7,42 +7,6 @@ stock Torlesek() { //orem
 	// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& //
 	// REMOVEBUILDING KÓD - A szokásos formában: MI EZ - KI KÜLDTE - MIKOR RAKTAD BE
 	// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& //
-	
-	
-	//Creed Birtok - Damien Creed - 2014.10.29
-	RemoveBuildingForPlayer(playerid, 17349, -542.0078, -522.8438, 29.5938, 0.25);
-	RemoveBuildingForPlayer(playerid, 17019, -606.0313, -528.8203, 30.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -573.0547, -559.6953, 38.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -533.5391, -559.6953, 38.5469, 0.25);
-	RemoveBuildingForPlayer(playerid, 17012, -542.0078, -522.8438, 29.5938, 0.25);
-	RemoveBuildingForPlayer(playerid, 1441, -503.6172, -540.5313, 25.2266, 0.25);
-	RemoveBuildingForPlayer(playerid, 1415, -502.6094, -528.6484, 24.5859, 0.25);
-	RemoveBuildingForPlayer(playerid, 1440, -502.1172, -521.0313, 25.0234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1441, -502.4063, -513.0156, 25.2266, 0.25);
-	RemoveBuildingForPlayer(playerid, 17018, -565.7656, -489.1406, 29.7109, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -573.0547, -479.9219, 38.5781, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -552.7656, -479.9219, 38.6250, 0.25);
-	RemoveBuildingForPlayer(playerid, 1441, -554.4531, -496.1797, 25.1641, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -532.4688, -479.9219, 38.6484, 0.25);
-	RemoveBuildingForPlayer(playerid, 1440, -516.9453, -496.6484, 25.0234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1440, -503.1250, -509.0000, 25.0234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -512.1641, -479.9219, 38.5938, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -491.8594, -479.9219, 38.5859, 0.25);
-	RemoveBuildingForPlayer(playerid, 17020, -475.9766, -544.8516, 28.1172, 0.25);
-	RemoveBuildingForPlayer(playerid, 1278, -471.5547, -479.9219, 38.6250, 0.25);	
-		
-	
-	//Ballas HQ - Victor Gonzales - 2014.09.02
-	RemoveBuildingForPlayer(playerid, 3744, 2159.8281, -1930.6328, 15.0781, 0.25);
-	RemoveBuildingForPlayer(playerid, 3567, 2142.9141, -1947.4219, 13.2656, 0.25);
-	RemoveBuildingForPlayer(playerid, 620, 2114.5547, -1928.1875, 5.0313, 0.25);
-	RemoveBuildingForPlayer(playerid, 620, 2113.3984, -1925.0391, 10.8047, 0.25);
-	RemoveBuildingForPlayer(playerid, 620, 2115.6719, -1922.7656, 10.8047, 0.25);
-	RemoveBuildingForPlayer(playerid, 620, 2123.3594, -1928.0703, 6.8438, 0.25);
-	RemoveBuildingForPlayer(playerid, 3574, 2159.8281, -1930.6328, 15.0781, 0.25);
-	RemoveBuildingForPlayer(playerid, 620, 2122.6563, -1916.7891, 10.8047, 0.25);
-	RemoveBuildingForPlayer(playerid, 620, 2116.9297, -1916.0781, 10.8047, 0.25);
-	RemoveBuildingForPlayer(playerid, 620, 2121.5078, -1909.5313, 10.8047, 0.25);
 
 	// O Neill birtok, pár fa - Mike O Neill - 2014.08.18
 	RemoveBuildingForPlayer(playerid, 785, -1307.2891, -1452.0547, 101.9375, 0.25);
@@ -50,62 +14,6 @@ stock Torlesek() { //orem
 	RemoveBuildingForPlayer(playerid, 791, -1368.7188, -1588.6953, 98.4922, 0.25);
 	RemoveBuildingForPlayer(playerid, 791, -1307.2891, -1452.0547, 101.9375, 0.25);
 
-	/*// Gates Hegy - Kiji - 2014.05.02 Egyenlõre nem kerül be, mert valamiért bugol
-	RemoveBuildingForPlayer(playerid, 10675, -2529.1875, -705.0391, 141.5703, 0.25);
-	RemoveBuildingForPlayer(playerid, 705, -2416.3516, -639.3516, 131.4688, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2528.0781, -719.9219, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2522.8125, -719.9219, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2517.5469, -719.9219, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1596, -2517.5938, -671.0078, 149.4609, 0.25);
-	RemoveBuildingForPlayer(playerid, 1694, -2518.4297, -632.1953, 155.6719, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2521.0469, -589.3828, 129.2578, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2514.8672, -711.8672, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2514.8672, -706.6328, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2514.8672, -701.3984, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2514.8672, -696.1719, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2514.8672, -690.9375, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2514.8672, -717.0938, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2510.4531, -739.5625, 129.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1684, -2508.5000, -680.9531, 139.8516, 0.25);
-	RemoveBuildingForPlayer(playerid, 1684, -2508.4063, -669.0938, 139.8516, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2487.1563, -594.3281, 133.2969, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2484.2969, -597.1641, 133.2969, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2484.2969, -602.4297, 133.2969, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2484.2969, -607.6953, 133.2969, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2477.6406, -609.8594, 132.1719, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2480.0234, -623.8984, 132.2109, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2464.0625, -626.8828, 132.2109, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2463.3984, -612.6328, 132.1719, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2458.9922, -670.9453, 132.5859, 0.25);
-	RemoveBuildingForPlayer(playerid, 1323, -2456.7500, -627.6094, 133.1484, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2460.9766, -638.7109, 130.7031, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2444.1406, -694.1406, 130.9141, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2440.4531, -651.0234, 130.8516, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2450.8750, -613.3203, 132.1719, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2449.5078, -627.5313, 132.2109, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2440.0313, -611.4453, 132.1719, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2436.4531, -625.9922, 130.5000, 0.25);
-	RemoveBuildingForPlayer(playerid, 1319, -2434.4141, -624.6953, 132.2109, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2580.6953, -588.9453, 110.3438, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2576.5703, -630.0156, 116.7031, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2567.6563, -710.3359, 121.3750, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2541.5000, -690.9609, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2541.5000, -696.1875, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2541.5000, -701.4219, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2541.5000, -706.6563, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2541.5000, -711.8828, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2541.5000, -717.1172, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 654, -2541.0547, -592.4453, 130.5469, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2538.6094, -719.9219, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1595, -2538.9297, -648.6406, 152.2188, 0.25);
-	RemoveBuildingForPlayer(playerid, 1595, -2538.9297, -660.9063, 152.2188, 0.25);
-	RemoveBuildingForPlayer(playerid, 1411, -2533.3438, -719.9219, 139.9063, 0.25);
-	RemoveBuildingForPlayer(playerid, 1695, -2529.6641, -652.6484, 147.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1695, -2529.6641, -661.9766, 147.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1695, -2529.6641, -671.3047, 147.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1695, -2529.6641, -680.6250, 147.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1695, -2529.6641, -634.0000, 147.5234, 0.25);
-	RemoveBuildingForPlayer(playerid, 1695, -2529.6641, -643.3281, 147.5234, 0.25);*/
 	
 	// Rendõrség külsõ törlések pár útban levõ fa és tábla - 2014.03.23 - John S. Gates
 	RemoveBuildingForPlayer(playerid, 1266, 1538.5234, -1609.8047, 19.8438, 0.25);
@@ -1224,17 +1132,6 @@ stock Torlesek() { //orem
 	RemoveBuildingForPlayer(playerid, 1283, 1244.0391, -1406.5313, 15.1641, 80.0);
 	RemoveBuildingForPlayer(playerid, 1284, 633.9609, -1720.7891, 16.1953, 50.0);
 	RemoveBuildingForPlayer(playerid, 1283, 1193.1328, -1851.4688, 15.6250, 40.0);
-	
-	//CIA HQ - Edie Morra 2014.10.29
-	RemoveBuildingForPlayer(playerid, 16336, -225.1875, 1394.8359, 68.5781, 0.25);
-	RemoveBuildingForPlayer(playerid, 16615, -389.7656, 1515.1641, 74.5547, 0.25);
-	RemoveBuildingForPlayer(playerid, 16616, -326.6953, 1541.3906, 74.5547, 0.25);
-	RemoveBuildingForPlayer(playerid, 16725, -166.0547, 1395.7891, 12.7109, 0.25);
-	RemoveBuildingForPlayer(playerid, 16141, -166.0547, 1395.7891, 12.7109, 0.25);
-	RemoveBuildingForPlayer(playerid, 16335, -225.1875, 1394.8359, 68.5781, 0.25);
-	RemoveBuildingForPlayer(playerid, 16137, -389.7656, 1515.1641, 74.5547, 0.25);
-	RemoveBuildingForPlayer(playerid, 16138, -326.6953, 1541.3906, 74.5547, 0.25);
-	
 	
 	return 1;
 }
