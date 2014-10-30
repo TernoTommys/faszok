@@ -33,7 +33,7 @@ CMD:poke(playerid, params[])
 ALIAS(adafk):adminafk;
 CMD:adminafk(playerid, params[])
 {
-	if(Admin(playerid, 2))
+	if(!Admin(playerid, 2) && !IsScripter(playerid)) return Msg(playerid, "Nem-nem");
 	if(AdminDuty[playerid]) return Msg(playerid, "Adminszoliba elrejtõzni? Nehéz lesz.. :D");
 	{
 		if(GetPlayerColor(playerid) == COLOR_INVISIBLE)
