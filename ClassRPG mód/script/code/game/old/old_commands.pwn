@@ -26838,6 +26838,23 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		return 1;
 	}
 // pilóta
+	if(egyezik(cmd, "/objectek"))
+	{
+	    if(!IsScripter(playerid)) return 1;
+		if(params < 1) return Msg(playerid, "Használata: /objectek [loadfs/unloadfs]");
+
+		if(egyezik(param[1], "loadfs"))
+		{
+			SendRconCommand("loadfs Objectek");
+			Msg(playerid, "Objectek betöltve");
+		}
+		if(egyezik(param[1], "unloadfs"))
+		{
+			SendRconCommand("unloadfs Objectek");
+			Msg(playerid, "Objectek törölve.");
+		}
+		return 1;
+	}
 	if(strcmp(cmd, "/pilotaradio", true) == 0 || strcmp(cmd, "/pr", true) == 0)
 	{
 		new result[128];
@@ -26848,11 +26865,11 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		if(LMT(playerid, FRAKCIO_KATONASAG) && !PlayerToPoint(10, playerid, 213.6858,1822.7659,6.4141) && !IsPlayerInAnyVehicle(playerid)) return Msg(playerid, "Nem vagy jármûben, vagy az irányítópultnál!");
 		elseif(!LMT(playerid, FRAKCIO_KATONASAG) && !IsARepulo(tmpcar)) return SendClientMessage(playerid, COLOR_YELLOW, "Nem vagy repülõben, ezért nem használhatod a rádiót!");
 		
-		if(IsAKatonaCar(tmpcar) || PlayerToPoint(10, playerid, 213.6858,1822.7659,6.4141))
+		if(IsAKatonaCar(tmpcar))
 			format(string, sizeof(string), "**Légiirányítás: %s: %s, vége**", ICPlayerName(playerid), result);
 		else if(IsACopCar(tmpcar))
 			format(string, sizeof(string), "** Rendõrség: %s: %s, vége**", ICPlayerName(playerid), result);
-		else if(IsHydraOrHunter(tmpcar))
+		else if(IsHydraOrHunter(tmpcar) && IsAKatonaCar(tmpcar))
 			format(string, sizeof(string), "** Légierõ: %s: %s, vége**", ICPlayerName(playerid), result);
 		else if(IsARepulo(tmpcar))
 			format(string, sizeof(string), "** Pilóta: %s: %s, vége**", ICPlayerName(playerid), result);
@@ -43247,9 +43264,10 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 			SendClientMessage(playerid, COLOR_BLUE, "Scripter(5555): /saveint /deleteint /editint /goint /weatherall /kapu /npc /parancsbetöltés /forgalom /alapkocsi");
 
 		}
-		case default:
+		default:
 		{
 			SendClientMessage(playerid, COLOR_BLUE, "/sah 0-5555");
+		}
 		}
 		return 1;
 	}
