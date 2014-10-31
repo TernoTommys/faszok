@@ -22272,7 +22272,7 @@ fpublic IdojarasValtozas()
 				lesz = idojarasok[random(sizeof(idojarasok))];
 				
 				// Ne rakjon be viharos és ködös idõt
-				while(lesz == 8 || lesz == 4 || lesz == 9 || (lesz == 7  || lesz == 12 || lesz == 15 || lesz == 20) && random(10) != 1)
+				while(lesz == 8 || lesz == 4 || lesz == 9 || (lesz == 7  || lesz == 12 || lesz == 15 || lesz == 20) && random(5) != 1)
 					lesz = idojarasok[random(sizeof(idojarasok))];
 			}
 		}
@@ -24467,7 +24467,7 @@ stock OnPlayerConnectKick(playerid)
 		}
 	}
 
-	if(ClassClient)
+	/*if(ClassClient)
 	{
 		if(IsTerno(playerid) && !egyezik(PlayerInfo[playerid][pCode],"A23D-5401-82D1-BB6E-31E2-4B9A-5EB6-D0CB"))
 		{
@@ -24488,7 +24488,7 @@ stock OnPlayerConnectKick(playerid)
 			TKick(playerid);
 			return 1;
 		}
-	}
+	}*/
 	/*
 	if(!strcmp(PlayerName(playerid), "Terno_Tommys", true) && strcmp(PlayerIP(playerid), "37.17.175.245"))
 	{

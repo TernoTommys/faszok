@@ -43272,24 +43272,62 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		return 1;
 	}
+	if(egyezik(cmd, "/törlés") || egyezik(cmd, "/torles"))
+	{
+		if(!Admin(playerid, 5555)) return Msg(playerid,"Nem-nem...");
+		if(params < 1) return Msg(playerid, "/törlés [Ház / Kocsi / Játékos] ");
+		if(egyezik(param[1], "ház") || egyezik(param[1], "haz"))
+		{
+			if(params != 2) return Msg(playerid,"/törlés Ház [Id]");
+			new id = strval(param[2]);
+			if(id < 0) return Msg(playerid, "A-a!");
+			if(HouseInfo[id][Van] != 1) return Msg(playerid, "Nincs ilyen ház!");
+			DestroyDynamicPickup(HazPickup[id]);
+			HazPickup[id] = NINCS;
+			HouseInfo[id][Van] = 0;
+			format(string, 128, "DELETE FROM %s WHERE ID='%d'", SQL_DB_Hazak, id);
+			doQuery(string);
+			ABroadCastFormat(COLOR_LIGHTGREEN, 1, "%s törölt egy házat. Házszám: %d", PlayerName(playerid), id);
+			HazakSzamaOsszesen --;
+		}
+		else if(egyezik(param[1], "kocsi"))
+		{
+			if(params != 2) return Msg(playerid,"/törlés kocsi [ID]");
+			new id = strval(param[2]);
+			if(id < 0) return Msg(playerid, "A-a!");
+			if(IsVehicleConnected(CarInfo[id][cId])) DestroyVehicle(CarInfo[id][cId]);
+			CarInfo[id][Van] = 0;
+			format(string, 128, "DELETE FROM %s WHERE ID='%d'", SQL_DB_Kocsik, id);
+			doQuery(string);
+			ABroadCastFormat(COLOR_LIGHTGREEN, 1, "%s törölt egy kocsit. Rendszám: %d", PlayerName(playerid), id);
+		}
+		else if(egyezik(param[1],"játékos") || egyezik(param[1],"jatekos"))
+		{
+			if(params != 2) return Msg(playerid,"/törlés Játékos [Jatekos_IG_Neve]");
+			//if(!RegisztraltJatekos(param[2])) return Msg(playerid,"Nincs ilyen játékos!");
+			Format(string,"DELETE FROM playerek WHERE Nev='%s'",param[2]);
+			doQuery(string);
+			ABroadCastFormat(COLOR_LIGHTGREEN, 1, "<< %s törölt egy játékost! Név: %s >>", PlayerName(playerid), param[2]);
+		}
+		else return Msg(playerid, "/törlés [Ház / Kocsi / Játékos] ");
+	}
 	if(egyezik(cmd, "/halloween"))
 	{
 	    if(!Admin(playerid, 1337) && !IsScripter(playerid)) return Msg(playerid, "Csak szeretnéd (:");
 		if(!IsHalloWeen)
 		{
-		SendClientMessageToAll(COLOR_WHITE, "__________________________ H A L L O W E E N __________________________");
-		SendClientMessageToAll(COLOR_WHITE, "A Halloween-i event elindult! Jó szórakozást!");
+		SendClientMessageToAll(COLOR_WHITE, "{FCFF00}__________________________ {FF8C00}H A L L O W E E N {FCFF00}__________________________");
+		SendClientMessageToAll(COLOR_WHITE, "{FF8C00}A {FCFF00}Hallo{FF8C00}ween-i {FCFF00}event {FF8C00}elindult{FCFF00}! Jó {FF8C00}szórakozást!");
 		
 		IsHalloWeen = 1;
 		RandomPumpkin();
 		}
 		else
 		{
-		SendClientMessageToAll(COLOR_WHITE, "__________________________ H A L L O W E E N __________________________");
-		SendClientMessageToAll(COLOR_WHITE, "A Halloween-i event véget ért! Reméljük élveztétek, további jó játékot!");
+		SendClientMessageToAll(COLOR_WHITE, "{FCFF00}__________________________ {FF8C00}H A L L O W E E N {FCFF00}__________________________");
+		SendClientMessageToAll(COLOR_WHITE, "{FF8C00}A Halloween-i {FCFF00}event véget {FF8C00}ért! {FCFF00}Reméljük élveztétek, {FF8C00}további jó játékot!");
 		IsHalloWeen = 0;
 		}
-		
 		return 1;
 	}
 	if(egyezik(cmd, "/tok") || egyezik(cmd, "/tök"))
