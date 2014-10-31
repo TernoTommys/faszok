@@ -7,12 +7,12 @@
 
 // MYSQL :: MAIN CREDENTIALS
 #define SQL_User "root"
-#define SQL_Jelszo "e9v6ggwAUkL0X5UiDCbS"
+#define SQL_Jelszo "dJpyQ8PvuD2395e"
 #define SQL_Adatbazis "ClassRPG_Re_born"
 
 // MYSQL :: TEST CREDENTIALS
 #define SQL_UserTeszt "root"
-#define SQL_JelszoTeszt "e9v6ggwAUkL0X5UiDCbS"
+#define SQL_JelszoTeszt "dJpyQ8PvuD2395e"
 #define SQL_AdatbazisTeszt "classteszt"
 
 // MYSQL :: TABLES
