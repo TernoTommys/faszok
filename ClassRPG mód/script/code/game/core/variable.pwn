@@ -827,4 +827,5 @@ new Float:HalloWeenPumpkinPosX = 0.0;
 new Float:HalloWeenPumpkinPosY = 0.0;
 new Float:HalloWeenPumpkinPosZ = 0.0;
 new HalloWeenPumpkinTimer;
+new TimeToOpenPumpkin = 5;
 

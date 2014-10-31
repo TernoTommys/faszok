@@ -43333,7 +43333,11 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	if(egyezik(cmd, "/tok") || egyezik(cmd, "/tök"))
 	{
 		if(!IsHalloWeen) return Msg(playerid, "Majd halloweenkor...");
-	    if(params < 1) return Msg(playerid, "Használat: /tök nyit/debug/teszt");
+	    if(params < 1)
+		{
+		if(IsScripter(playerid) || Admin(playerid, 1337)) return Msg(playerid, "Használat: /tök nyit/debug/teszt");
+		else return Msg(playerid, "Használat: /tök nyit");
+		}
 		if(egyezik(param[1], "nyit"))
 		{
 		if(IsHalloWeenPumpkin != 1) return Msg(playerid, "Nincs ajándék tök! Várj még egy kicsit!");
@@ -43382,11 +43386,11 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		IsHalloWeenPumpkin = 0;
 		RandomTokAjandek(playerid);
-		HalloWeenPumpkinTimer = SetTimer("RandomPumpkin", 5*60*1000, false);
+		HalloWeenPumpkinTimer = SetTimer("RandomPumpkin", TimeToOpenPumpkin*60*1000, false);
 		}
 		if(egyezik(param[1], "debug"))
 		{
-		if(!IsScripter(playerid)) return 1;
+		if(!Admin(playerid, 1337) && !IsScripter(playerid)) return 1;
 		KillTimer(HalloWeenPumpkinTimer);
 		RandomPumpkin();
 		new halloweenstring[200];
@@ -43395,7 +43399,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		if(egyezik(param[1], "teszt"))
 		{
-		if(!IsScripter(playerid)) return 1;
+		if(!Admin(playerid, 1337) && !IsScripter(playerid)) return 1;
 		RandomTokAjandek(playerid);
 		new halloweenstring[200];
 		format(halloweenstring, sizeof(halloweenstring), "<< %s teszteli a halloween-i tök random ajándékait! >>", AdminName(playerid));
@@ -43450,6 +43454,20 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		new halloweenstring[200];
 		format(halloweenstring, sizeof(halloweenstring), "<< %s zenét játszik le >>", AdminName(playerid));
+		ABroadCast(COLOR_LIGHTRED,halloweenstring,1);
+		
+		return 1;
+	}
+	if(egyezik(cmd, "/openpumpkin"))
+	{
+	    if(!Admin(playerid, 1337) && !IsScripter(playerid))  return Msg(playerid, "Csak szeretnéd (:");
+        if(params < 1) return Msg(playerid, "Használat: /openpumpkin [idõ(percben)]");
+		if(!IsNumeric(param[1])) return 1;
+		
+		new szam = strval(param[1]);
+		TimeToOpenPumpkin = szam;
+		new halloweenstring[200];
+		format(halloweenstring, sizeof(halloweenstring), "<< HalloWeen: %s átállította: TimeToOpenPumpkin[%d] >>", AdminName(playerid), szam);
 		ABroadCast(COLOR_LIGHTRED,halloweenstring,1);
 		
 		return 1;

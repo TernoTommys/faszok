@@ -1455,9 +1455,9 @@ public OnPlayerText(playerid, text[]) //opt
 
 		if(egyezik(tmp, "munka"))
 		{
-			if(!PlayerToPoint(5.0, playerid, -1438.6412,-1544.8313,102.2578))
+			if(!PlayerToPoint(5.0, playerid, 2576.038, -1280.929, 1065.367))
 			{
-			SetPlayerCheckpoint(playerid, -1438.6412,-1544.8313,102.2578, 5.0);
+			SetPlayerCheckpoint(playerid, 2576.038, -1280.929, 1065.367, 5.0);
 			Msg(playerid, "Nem vagy a hitman HQ-n.");
 			return 0;
 			}
@@ -1753,9 +1753,9 @@ public OnPlayerText(playerid, text[]) //opt
 		}
 		else if ((strcmp("Rendelés", tmp, true, strlen(tmp)) == 0) && (strlen(tmp) == strlen("Rendelés")) || (strcmp("Rendeles", tmp, true, strlen(tmp)) == 0) && (strlen(tmp) == strlen("Rendeles")))
 		{
-			if(!PlayerToPoint(5.0, playerid, -1446.6458,-1545.3087,102.2969))
+			if(!PlayerToPoint(5.0, playerid, 2556.314, -1297.525, 1060.984))
 			{
-				SetPlayerCheckpoint(playerid, -1446.6458,-1545.3087,102.2969, 3);
+				SetPlayerCheckpoint(playerid, 2556.314, -1297.525, 1060.984, 3);
 				Msg(playerid, "Nem vagy a rendelõhelyen");
 				return 0;
 			}

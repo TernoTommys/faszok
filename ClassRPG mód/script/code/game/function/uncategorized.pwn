@@ -29618,6 +29618,19 @@ fpublic OnPlayerDeath(playerid, killerid, reason)
 		CellTime[caller] = 0;
 		Mobile[caller] = 255;
 	}
+	
+	// Hitman kill
+	if(PlayerInfo[playerid][pHeadValue] > 0)
+	{
+		SendFormatMessageToAll(COLOR_YELLOW, " <<< A bérgyilkos teljesítette a megbízó kérését - %s kinyírva >>> ", PlayerName(playerid));
+		format(string,128,"<< %s teljesítette a megbízást >>", PlayerInfo[playerid][pHitmanNev]);
+		SendMessage(SEND_MESSAGE_HITMAN, string, COLOR_YELLOW);
+		SendFormatMessage(killerid, COLOR_LIGHTBLUE, "A megbízást teljesítetted. A cég átutalta a pénzt a számládra. (%dFt)", PlayerInfo[killerid][pHeadValue]);
+
+		PlayerInfo[killerid][pAccount] += PlayerInfo[playerid][pHeadValue];
+		PlayerInfo[playerid][pHeadValue] = 0;
+	}
+	// Hitman kill
 
 	ClearPlayerCrime(playerid);
 	if(!Paintballozik[playerid] && ScripterDuty[playerid] != 1 && AdminDuty[playerid] != 1 && !Kikepzoben[playerid])
@@ -42245,7 +42258,9 @@ stock RandomTokAjandek(playerid)
 		SetPlayerPos(playerid, 1109.954, -968.523, 42.764);
 		SetPlayerVirtualWorld(playerid, 0);
 		SetPlayerInterior(playerid, 0);
-		AnimbaRak(playerid);
+		new Float:shealth;
+		GetPlayerHealth(playerid, shealth);
+		SetHealth(playerid, shealth-50);
 		}
 		case 1651..1800:
 		{
@@ -42282,6 +42297,6 @@ stock RandomTokAjandek(playerid)
 		}
 		
 	}
-	SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: A következõ tököt 5 perc múlva nyithatod.");
+	SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: A következõ tököt %d perc múlva nyithatod.", TimeToOpenPumpkin);
 	return 1;
 }
