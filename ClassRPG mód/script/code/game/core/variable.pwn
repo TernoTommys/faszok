@@ -822,3 +822,9 @@ new bool:DriveBy[MAX_PLAYERS];
 new bool:Tazer[MAX_PLAYERS];
 new gPB[MAX_PLAYERS];
 new IsHalloWeen = 0;
+new IsHalloWeenPumpkin = 0;
+new Float:HalloWeenPumpkinPosX = 0.0;
+new Float:HalloWeenPumpkinPosY = 0.0;
+new Float:HalloWeenPumpkinPosZ = 0.0;
+new HalloWeenPumpkinTimer;
+

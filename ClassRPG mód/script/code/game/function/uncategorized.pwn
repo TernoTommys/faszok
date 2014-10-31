@@ -3072,7 +3072,8 @@ stock IdoAllitas(hour = NINCS)
 			case 21..24: hour=24;
 		}
 	}
-	SetWorldTime(hour);
+	if(IsHalloWeen) SetWorldTime(0);
+	else SetWorldTime(hour);
 	return 1;
 }
 stock TrailerHatsoLampa(veh, be=true)
@@ -6521,6 +6522,7 @@ stock AnimbaRak(playerid, bool:uzenet = true)
 	Freeze(playerid, 5000);
 	ApplyAnimation(playerid, "SWEET", "Sweet_injuredloop", 4.0, 1, 0, 0, 0, 0);
 	SetPlayerDrunkLevel(playerid, 50000);
+	Visz[playerid] = NINCS;
 	
 	if(HarcVan && Harcol[playerid] && TeruletInfo[ HarcolTerulet[playerid] ][tHarc])
 		HarcKieses(playerid, "Animba esett");
@@ -41178,7 +41180,7 @@ stock SendMessage(type, msg[], color, p1 = 0)
 		{
 			if(p1 == 0)
 			{
-				if(PlayerInfo[i][pAdmin] >= 1 || IsAS(i) || IsTerno(i) && !IsAllTerno(i))
+				if(PlayerInfo[i][pAdmin] >= 1 || IsAS(i) || IsTerno(i) && !IsAllTerno(i) || IsScripter(i))
 				{
 					SendClientMessage(i, color, msg);
 				}
@@ -42105,4 +42107,170 @@ stock IsAdmin(playerid)
 {
 if(PlayerInfo[playerid][pAdmin] || IsScripter(playerid)) return 1;
 return 0;
+}
+
+stock RandomPumpkin()
+{
+	new rnd = random(sizeof(PumpkinPos));
+	
+	HalloWeenPumpkinPosX = PumpkinPos[rnd][0];
+	HalloWeenPumpkinPosY = PumpkinPos[rnd][1];
+	HalloWeenPumpkinPosZ = PumpkinPos[rnd][2];
+	IsHalloWeenPumpkin = 1;
+	SendClientMessageToAll(COLOR_WHITE, "ClassRPG: A kincset rejtõ tök lerakva a "COL_PIROS"kísértet"COL_FEHER"házban. Térképen jeleztük neked a helyet! (/tök nyit!)");
+	ABroadCast(COLOR_LIGHTRED,"<< HalloWeen-i tök lespawnolva! >>",1);
+	
+	return 1;
+}
+
+#define MAXTOKAJANDEK 2500
+
+stock RandomTokAjandek(playerid)
+{
+	SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Gratulálunk! Megtaláltad a töködet! A jutalmad a következõ:");
+	new rnd = random(MAXTOKAJANDEK);
+	
+	switch(rnd)
+	{
+		case 0:
+		{
+		new ido = 1; // Hány napra legyen hitman
+		PlayerInfo[playerid][pHitman] = 1;
+		PlayerInfo[playerid][pHitmanIdo] = UnixTime + (ido * 86400);
+		new string[MAX_PLAYER_NAME];
+		new randomnumber = random(100);
+		format(string, sizeof(string), "Ugynok%d", playerid*Szint(playerid)+randomnumber);
+		strmid(PlayerInfo[playerid][pHitmanNev], string, 0, strlen(string), MAX_PLAYER_NAME);
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: A bérgyilkosok fõnöke felvett téged 1 napra");
+		}
+		case 1..200:
+		{
+		new randomszorzo = random(10);
+		randomszorzo = randomszorzo+1;
+		new randompenz = randomszorzo*520000;
+		GiveMoney(playerid, randompenz);
+		SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Pénzt kaptál: %dFt", randompenz);
+		}
+		case 201..220:
+		{
+		PlayerInfo[playerid][pPremiumPont] += 1;
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál 1 prémiumpontot!");
+		}
+		case 221..250:
+		{
+		PlayerInfo[playerid][pMats] += 50000;
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál némi materialt!");
+		}
+		case 251..680:
+		{
+		new randomskin = random(15);
+		new vegsoskin = 264;
+		switch(randomskin)
+		{
+			case 0: vegsoskin = 45;
+			case 1: vegsoskin = 78;
+			case 2: vegsoskin = 79;
+			case 3: vegsoskin = 135;
+			case 4: vegsoskin = 136;
+			case 5: vegsoskin = 137;
+			case 6: vegsoskin = 162;
+			case 7: vegsoskin = 160;
+			case 8: vegsoskin = 230;
+			case 9: vegsoskin = 167;
+			case 10: vegsoskin = 168;
+			case 11: vegsoskin = 209;
+			case 12: vegsoskin = 242;
+			case 13: vegsoskin = 241;
+			case 14: vegsoskin = 264;
+		}
+		SetPlayerSkin(playerid, vegsoskin);
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Hát ezt megszívtad haver c(:)");
+		}
+		case 681..1080:
+		{
+		new Float:X, Float:Y, Float:Z, Float:Distance = 10.0;
+        GetPlayerPos(playerid, X, Y, Z);
+		new randomzene = random(9);
+		switch(randomzene)
+		{
+			case 0: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/psychowithscream.wav", X, Y, Z, Distance, 1);
+			case 1: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Ghost%2002.wav", X, Y, Z, Distance, 1);
+			case 2: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/AAAGH1.WAV", X, Y, Z, Distance, 1);
+			case 3: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/woscream4.wav", X, Y, Z, Distance, 1);
+			case 4: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/wlaugh.wav", X, Y, Z, Distance, 1);
+			case 5: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/lach01.WAV", X, Y, Z, Distance, 1);
+			case 6: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/m_okay.wav", X, Y, Z, Distance, 1);
+			case 7: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Spooked.wav", X, Y, Z, Distance, 1);
+			case 8: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/moan01.wav", X, Y, Z, Distance, 1);
+		}
+		SendClientMessage(playerid, COLOR_WHITE, "ClassRPG: A szellemek kidobtak a kísértetházból, próbáld újra késõbb!");
+		SetPlayerPos(playerid, 1109.954, -968.523, 42.764);
+		SetPlayerVirtualWorld(playerid, 0);
+		SetPlayerInterior(playerid, 0);
+		}
+		case 1081..1300:
+		{
+		SendFormatMessageToAll(COLOR_LIGHTRED, "ClassRPG: %s-t kirúgták a szellemek a szerverrõl! Szegény..", PlayerName(playerid));
+		Kick(playerid);
+		}
+		case 1301..1650:
+		{
+		new Float:X, Float:Y, Float:Z, Float:Distance = 10.0;
+        GetPlayerPos(playerid, X, Y, Z);
+		new randomzene = random(9);
+		switch(randomzene)
+		{
+			case 0: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/psychowithscream.wav", X, Y, Z, Distance, 1);
+			case 1: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Ghost%2002.wav", X, Y, Z, Distance, 1);
+			case 2: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/AAAGH1.WAV", X, Y, Z, Distance, 1);
+			case 3: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/woscream4.wav", X, Y, Z, Distance, 1);
+			case 4: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/wlaugh.wav", X, Y, Z, Distance, 1);
+			case 5: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/lach01.WAV", X, Y, Z, Distance, 1);
+			case 6: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/m_okay.wav", X, Y, Z, Distance, 1);
+			case 7: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Spooked.wav", X, Y, Z, Distance, 1);
+			case 8: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/moan01.wav", X, Y, Z, Distance, 1);
+		}
+		SendClientMessage(playerid, COLOR_WHITE, "ClassRPG: A szellemek kidobtak a kísértetházból, és elég csúnyán elbántak veled.");
+		SetPlayerPos(playerid, 1109.954, -968.523, 42.764);
+		SetPlayerVirtualWorld(playerid, 0);
+		SetPlayerInterior(playerid, 0);
+		AnimbaRak(playerid);
+		}
+		case 1651..1800:
+		{
+		new randomszorzo = random(10);
+		PlayerInfo[playerid][pKokain] += randomszorzo*600;
+		PlayerInfo[playerid][pHeroin] += randomszorzo*600;
+		PlayerInfo[playerid][pMarihuana] += randomszorzo*600;
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál némi drogot!");
+		}
+		case 1801..1900:
+		{
+		WeaponGiveWeapon(playerid, WEAPON_M4, 1000);
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál egy m4et 1000 tölténnyel!");
+		}
+		case 1901..2000:
+		{
+		WeaponGiveWeapon(playerid, WEAPON_SNIPER, 100);
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál egy sniper 100 tölténnyel!");
+		}
+		case 2001..2100:
+		{
+		WeaponGiveWeapon(playerid, WEAPON_AK47, 1000);
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál egy ak47et 1000 tölténnyel!");
+		}
+		case 2101..2200:
+		{
+		WeaponGiveWeapon(playerid, WEAPON_COMBAT, 300);
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál egy combatot 300 tölténnyel!");
+		}
+		case 2201..2499:
+		{
+		PlayerInfo[playerid][pArany] += 1;
+		SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Kaptál egy aranyrudat!");
+		}
+		
+	}
+	SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: A következõ tököt 15 perc múlva nyithatod.");
+	return 1;
 }

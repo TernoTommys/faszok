@@ -81,7 +81,7 @@ stock SkinDataRecalculate()
 	
 	// Védett skinek
 	SkinData[33]  = -6876;		// Denaro
-	SkinData[47]  = -8176234; 	// Edie
+	SkinData[292]  = -5326; 	// Ralf
 	SkinData[94]  = -6122; 		// John
 	SkinData[217] = -8183364; 	// Krisztofer
 	SkinData[289] = -234; 		// Terno

@@ -2522,32 +2522,37 @@ CMD:kozmunka(playerid, params[])
 ALIAS(menza):koszt;
 CMD:koszt(playerid, params[])
 {
-	if(FloodCheck(playerid)) return 1;
-	if(IsACop(playerid)) return Msg(playerid, "Megéheztél? :-D");
-	if(Evett[playerid] > UnixTime) return SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Még nem kérhetsz kosztot! Legközelebb %d másodperc múlva kérhetsz", Evett[playerid]-UnixTime);
-	//if(PInfo(playerid,Jailed) != 7) return Msg(playerid, "Nem a fegyenctelepen vagy elhelyezve, így nem kérhetsz kosztot!");
-	if(!PInfo(playerid,Jailed)) return Msg(playerid, "Nem vagy börtönben");
-	new kaja[32];
-	if(sscanf(params, "s[32]", kaja)) return Msg(playerid, "/koszt [bableves/tojásleves/sertéspörkölt/rántotthús/borsófõzelék/krumplifõzelék]");
-	if(egyezik(kaja, "bableves"))
-		Szukseglet(playerid, -7.5, -2.5),Cselekves(playerid, "kért egy adag bablevest.");
-	elseif(egyezik(kaja, "tojásleves") || egyezik(kaja, "tojasleves"))
-		Szukseglet(playerid, -2.5, -5.0),Cselekves(playerid, "kért egy adag tojáslevest.");
-	elseif(egyezik(kaja, "sertéspörkölt") || egyezik(kaja, "sertesporkolt") || egyezik(kaja, "pörkölt") || egyezik(kaja, "porkolt"))
-		Szukseglet(playerid, -10.0),Cselekves(playerid, "kért egy adag sertéspörköltet.");
-	elseif(egyezik(kaja, "rántotthús") || egyezik(kaja, "rantotthus"))
-		Szukseglet(playerid, -9.0, -1.0),Cselekves(playerid, "kért egy adag rántotthúst.");
-	elseif(egyezik(kaja, "borsófõzelék") || egyezik(kaja, "borsofozelek"))
-		Szukseglet(playerid, -8.5, -1.5),Cselekves(playerid, "kért egy adag borsófõzeléket.");
-	elseif(egyezik(kaja, "krumplifõzelék") || egyezik(kaja, "krumplifozelek"))
-		Szukseglet(playerid, -4.5, -5.5),Cselekves(playerid, "kért egy adag krumplifõzelék.");
-	else return Msg(playerid,"Nincs ilyen koszt.");
-	
-	Evett[playerid] = UnixTime+300;
-	ApplyAnimation(playerid, "FOOD", "EAT_Burger", 3.0, 0, 0, 0, 0, 0);
-	SendClientMessage(playerid, COLOR_GREEN, "Kértél egy menüt, nem kell sietned, öt percenként szolgálnak ki újra! Jó étvágyat!");
-	return 1;
+   if(FloodCheck(playerid)) return 1;
+   if(IsACop(playerid)) return Msg(playerid, "Megéheztél? :-D");
+   if(Evett[playerid] > UnixTime) return SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Még nem kérhetsz kosztot! Legközelebb %d másodperc múlva kérhetsz", Evett[playerid]-UnixTime);
+   //if(PInfo(playerid,Jailed) != 7) return Msg(playerid, "Nem a fegyenctelepen vagy elhelyezve, így nem kérhetsz kosztot!");
+   if(!PInfo(playerid,Jailed)) return Msg(playerid, "Nem vagy börtönben");
+   new kaja[32];
+   if(sscanf(params, "s[32]", kaja)) return Msg(playerid, "/koszt [bableves/tojásleves/sertéspörkölt/rántotthús/borsófõzelék/krumplifõzelék/tökfözelék/tökleves]");
+   if(egyezik(kaja, "bableves"))
+      Szukseglet(playerid, -7.5, -2.5),Cselekves(playerid, "kért egy adag bablevest.");
+   elseif(egyezik(kaja, "tojásleves") || egyezik(kaja, "tojasleves"))
+      Szukseglet(playerid, -2.5, -5.0),Cselekves(playerid, "kért egy adag tojáslevest.");
+   elseif(egyezik(kaja, "sertéspörkölt") || egyezik(kaja, "sertesporkolt") || egyezik(kaja, "pörkölt") || egyezik(kaja, "porkolt"))
+      Szukseglet(playerid, -10.0),Cselekves(playerid, "kért egy adag sertéspörköltet.");
+   elseif(egyezik(kaja, "rántotthús") || egyezik(kaja, "rantotthus"))
+      Szukseglet(playerid, -9.0, -1.0),Cselekves(playerid, "kért egy adag rántotthúst.");
+   elseif(egyezik(kaja, "borsófõzelék") || egyezik(kaja, "borsofozelek"))
+      Szukseglet(playerid, -8.5, -1.5),Cselekves(playerid, "kért egy adag borsófõzeléket.");
+   elseif(egyezik(kaja, "krumplifõzelék") || egyezik(kaja, "krumplifozelek"))
+      Szukseglet(playerid, -4.5, -5.5),Cselekves(playerid, "kért egy adag tojáslevest.");
+   elseif(egyezik(kaja, "tökfözelék") || egyezik(kaja, "tokfozelek"))
+      Szukseglet(playerid, -5.5, -4.5),Cselekves(playerid, "kért egy adag tökfözelék.");
+   elseif(egyezik(kaja, "tökleves") || egyezik(kaja, "tokleves"))
+      Szukseglet(playerid, -6.5, -6.3),Cselekves(playerid, "kért egy adag tökleves.");
+   else return Msg(playerid,"Nincs ilyen koszt.");
+   
+   Evett[playerid] = UnixTime+300;
+   ApplyAnimation(playerid, "FOOD", "EAT_Burger", 3.0, 0, 0, 0, 0, 0);
+   SendClientMessage(playerid, COLOR_GREEN, "Kértél egy menüt, nem kell sietned, öt percenként szolgálnak ki újra! Jó étvágyat!");
+   return 1;
 }
+
 
 ALIAS(b5rt5ncella):bortoncella;
 CMD:bortoncella(playerid, params[])

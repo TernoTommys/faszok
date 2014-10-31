@@ -24040,6 +24040,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 
 				PlayerInfo[player][pAccount] += osszeg;
 				PlayerInfo[sajatszamla][pAccount] -= osszeg;
+				PlayerInfo[sajatszamla][pAccount] -= koltseg;
 				if(PlayerInfo[playerid][pMobilnet] != NINCS && !LaptopConnected[playerid])
 					PlayerInfo[playerid][pMobilnet] += random(75);
 				SendFormatMessage(playerid, COLOR_LIGHTRED, "ClassRPG: Utaltál %sFt-ot neki: %s, kezelési költség %dFt (1%%)", FormatNumber( osszeg , 0, ',' ), ICPlayerName(player), koltseg);
@@ -43280,6 +43281,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		SendClientMessageToAll(COLOR_WHITE, "A Halloween-i event elindult! Jó szórakozást!");
 		
 		IsHalloWeen = 1;
+		RandomPumpkin();
 		}
 		else
 		{
@@ -43287,6 +43289,130 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		SendClientMessageToAll(COLOR_WHITE, "A Halloween-i event véget ért! Reméljük élveztétek, további jó játékot!");
 		IsHalloWeen = 0;
 		}
+		
+		return 1;
+	}
+	if(egyezik(cmd, "/tok") || egyezik(cmd, "/tök"))
+	{
+		if(!IsHalloWeen) return Msg(playerid, "Majd halloweenkor...");
+	    if(params < 1) return Msg(playerid, "Használat: /tök nyit");
+		if(egyezik(param[1], "nyit"))
+		{
+		if(IsHalloWeenPumpkin != 1) return Msg(playerid, "Nincs ajándék tök! Várj még egy kicsit!");
+		if(!PlayerToPoint(5, playerid, HalloWeenPumpkinPosX, HalloWeenPumpkinPosY, HalloWeenPumpkinPosZ, 5555, 15))
+		{
+			if(GetPlayerVirtualWorld(playerid) == 5555 && GetPlayerInterior(playerid) == 15)
+			{
+			new nemjotok = 0;
+			for(new x = 0; x < sizeof(PumpkinPos); x++)
+			{
+				if(PlayerToPoint(5, playerid, PumpkinPos[x][0], PumpkinPos[x][1], PumpkinPos[x][2], 5555, 15) && !PlayerToPoint(5, playerid, HalloWeenPumpkinPosX, HalloWeenPumpkinPosY, HalloWeenPumpkinPosZ, 5555, 15)) 
+				{
+				nemjotok = 1;
+				break;
+				}
+			}
+		
+			if(nemjotok)
+			{
+			new Float:X, Float:Y, Float:Z, Float:Distance = 1.0;
+			GetPlayerPos(playerid, X, Y, Z);
+			new randomzene = random(9);
+			switch(randomzene)
+			{
+				case 0: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/psychowithscream.wav", X, Y, Z, Distance, 1);
+				case 1: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Ghost%2002.wav", X, Y, Z, Distance, 1);
+				case 2: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/AAAGH1.WAV", X, Y, Z, Distance, 1);
+				case 3: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/woscream4.wav", X, Y, Z, Distance, 1);
+				case 4: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/wlaugh.wav", X, Y, Z, Distance, 1);
+				case 5: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/lach01.WAV", X, Y, Z, Distance, 1);
+				case 6: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/m_okay.wav", X, Y, Z, Distance, 1);
+				case 7: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Spooked.wav", X, Y, Z, Distance, 1);
+				case 8: PlayAudioStreamForPlayer(playerid, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/moan01.wav", X, Y, Z, Distance, 1);
+			}
+			SetPlayerPos(playerid, 1109.954, -968.523, 42.764);
+			SetPlayerVirtualWorld(playerid, 0);
+			SetPlayerInterior(playerid, 0);
+			Msg(playerid, "Sajnos ez nem az a tök, és feldühítetted a szellemeket akik ezért kidobtak a házból!");
+			Msg(playerid, "Menj vissza és próbálj egy másik tököt!");
+			}
+			else Msg(playerid, "Nem vagy tök közelében!");
+		
+			return 1;
+			}
+			else return Msg(playerid, "Nem vagy a kísértet házban!");
+		}
+		IsHalloWeenPumpkin = 0;
+		RandomTokAjandek(playerid);
+		HalloWeenPumpkinTimer = SetTimer("RandomPumpkin", 15*60*1000, false);
+		}
+		if(egyezik(param[1], "debug"))
+		{
+		if(!IsScripter(playerid)) return 1;
+		KillTimer(HalloWeenPumpkinTimer);
+		RandomPumpkin();
+		new halloweenstring[200];
+		format(halloweenstring, sizeof(halloweenstring), "<< %s debugolta a halloween-i tököt! >>", AdminName(playerid));
+		ABroadCast(COLOR_LIGHTRED,halloweenstring,1);
+		}
+		if(egyezik(param[1], "teszt"))
+		{
+		if(!IsScripter(playerid)) return 1;
+		RandomTokAjandek(playerid);
+		new halloweenstring[200];
+		format(halloweenstring, sizeof(halloweenstring), "<< %s teszteli a halloween-i tök random ajándékait! >>", AdminName(playerid));
+		ABroadCast(COLOR_LIGHTRED,halloweenstring,1);
+		}
+		
+		
+		return 1;
+	}
+	if(egyezik(cmd, "/ijeszt"))
+	{
+	    if(!Admin(playerid, 1) && !IsScripter(playerid))  return Msg(playerid, "Csak szeretnéd (:");
+		if(!IsHalloWeen) return Msg(playerid, "Majd halloweenkor...");
+		new jatekos, ijesztszam;
+        if(sscanf(pms, "ui", jatekos, ijesztszam)) return Msg(playerid, "Használat: /ijeszt [játékos] [szám]");
+            
+		if(jatekos == INVALID_PLAYER_ID || IsPlayerNPC(jatekos))
+			return SendClientMessage(playerid, COLOR_LIGHTRED, "[Hiba]: Nincs ilyen játékos!");
+		
+		new Float:X, Float:Y, Float:Z, Float:Distance = 1.0;
+        GetPlayerPos(playerid, X, Y, Z);
+		switch(ijesztszam)
+		{
+				case 0: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/psychowithscream.wav", X, Y, Z, Distance, 1);
+				case 1: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Ghost%2002.wav", X, Y, Z, Distance, 1);
+				case 2: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/AAAGH1.WAV", X, Y, Z, Distance, 1);
+				case 3: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/Screams/woscream4.wav", X, Y, Z, Distance, 1);
+				case 4: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/wlaugh.wav", X, Y, Z, Distance, 1);
+				case 5: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/witch/lach01.WAV", X, Y, Z, Distance, 1);
+				case 6: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/m_okay.wav", X, Y, Z, Distance, 1);
+				case 7: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/ghost/Spooked.wav", X, Y, Z, Distance, 1);
+				case 8: PlayAudioStreamForPlayer(jatekos, "http://www.partnersinrhyme.com/soundfx/scary_halloween_sounds/monster/moan01.wav", X, Y, Z, Distance, 1);
+		}
+		new halloweenstring[200];
+		format(halloweenstring, sizeof(halloweenstring), "<< %s megijesztette %s-t >>", AdminName(playerid), PlayerName(jatekos));
+		ABroadCast(COLOR_LIGHTRED,halloweenstring,1);
+		
+		return 1;
+	}
+	if(egyezik(cmd, "/adminzene"))
+	{
+	    if(!Admin(playerid, 1) && !IsScripter(playerid))  return Msg(playerid, "Csak szeretnéd (:");
+        if(params < 1) return Msg(playerid, "Használat: /adminzene [url címe]");
+		
+		foreach(Jatekosok, p)
+		{
+			if(Logged(p))
+			{
+				PlayAudioStreamForPlayer(p, param[1]);
+			}
+
+		}
+		new halloweenstring[200];
+		format(halloweenstring, sizeof(halloweenstring), "<< %s zenét játszik le >>", AdminName(playerid));
+		ABroadCast(COLOR_LIGHTRED,halloweenstring,1);
 		
 		return 1;
 	}
