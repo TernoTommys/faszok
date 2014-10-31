@@ -2417,22 +2417,14 @@ stock IsAllDenaro(playerid)
 	else
 		return 0;
 }*/
-/*stock IsTerno(playerid)
-{
-	if(PlayerInfo[playerid][pID] == 234)
-		return 1;
-	else if(egyezik(PlayerName(playerid),"Terno_Tommys"))
-		return 1;
-	else
-		return 0;
-}*/
 stock IsTerno(playerid)
 {
-	if(IsClint(playerid))
+	if(PlayerInfo[playerid][pID] == 234)
 		return 1;
 	else
 		return 0;
 }
+
 
 stock GetNewIndex()
 {
