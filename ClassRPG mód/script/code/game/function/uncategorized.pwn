@@ -29622,9 +29622,10 @@ fpublic OnPlayerDeath(playerid, killerid, reason)
 	// Hitman kill
 	if(PlayerInfo[playerid][pHeadValue] > 0)
 	{
+		new hitmanstring[200];
 		SendFormatMessageToAll(COLOR_YELLOW, " <<< A bérgyilkos teljesítette a megbízó kérését - %s kinyírva >>> ", PlayerName(playerid));
-		format(string,128,"<< %s teljesítette a megbízást >>", PlayerInfo[playerid][pHitmanNev]);
-		SendMessage(SEND_MESSAGE_HITMAN, string, COLOR_YELLOW);
+		format(hitmanstring,128,"<< %s teljesítette a megbízást >>", PlayerInfo[playerid][pHitmanNev]);
+		SendMessage(SEND_MESSAGE_HITMAN, hitmanstring, COLOR_YELLOW);
 		SendFormatMessage(killerid, COLOR_LIGHTBLUE, "A megbízást teljesítetted. A cég átutalta a pénzt a számládra. (%dFt)", PlayerInfo[killerid][pHeadValue]);
 
 		PlayerInfo[killerid][pAccount] += PlayerInfo[playerid][pHeadValue];
