@@ -1186,7 +1186,7 @@ new const RadioClass[MaxRadio][3][256] =
 	{"http://adas.diabloradio.hu:8000/128.mp3","Diablo","~g~Diablo Radio"},
 	{"http://radioszerver.hu:8100/;stream.mp3","RadioSom","~g~RadioSom"},
 	{"http://62.204.145.218:8000/city64","radio city","~g~radio city"},
-	{"http://ip.classrpg.net:8050/listen.pls","ClassRPG Rádió","~g~ClassRPG Rádió"}
+	{"http://ip.classrpg.net:8050/listen.pls","ClassRPG Rádió","~g~ClassRPG Radio"}
 
 };
 
@@ -2893,7 +2893,7 @@ new const Float:DeerSpawns[MAXDEERSPAWN][6] =
 	{-1589.95068, -2326.94897, 38.49890,   0.00000, 25.00000, 0.00000}
 };
 
-#define MAXPUMPKINS 32
+#define MAXPUMPKINS 33
 new const Float:PumpkinPos[MAXPUMPKINS][3] =
 {
 	{2228.409, -1148.624, 1026.312},
@@ -2927,5 +2927,6 @@ new const Float:PumpkinPos[MAXPUMPKINS][3] =
 	{2190.164, -1139.255, 1030.396},
 	{2206.374, -1147.664, 1034.316},
 	{2188.686, -1147.206, 1034.303},
-	{2199.465, -1145.646, 1030.323}
+	{2199.465, -1145.646, 1030.323},
+	{2195.97, -1191.361, 1030.372}
 };

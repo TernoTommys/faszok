@@ -43295,7 +43295,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 	if(egyezik(cmd, "/tok") || egyezik(cmd, "/tök"))
 	{
 		if(!IsHalloWeen) return Msg(playerid, "Majd halloweenkor...");
-	    if(params < 1) return Msg(playerid, "Használat: /tök nyit");
+	    if(params < 1) return Msg(playerid, "Használat: /tök nyit/debug/teszt");
 		if(egyezik(param[1], "nyit"))
 		{
 		if(IsHalloWeenPumpkin != 1) return Msg(playerid, "Nincs ajándék tök! Várj még egy kicsit!");
@@ -43344,7 +43344,7 @@ fpublic S:OnPlayerCommandText(playerid, cmdtext[], cmd[], pms[]) //opcbeg
 		}
 		IsHalloWeenPumpkin = 0;
 		RandomTokAjandek(playerid);
-		HalloWeenPumpkinTimer = SetTimer("RandomPumpkin", 15*60*1000, false);
+		HalloWeenPumpkinTimer = SetTimer("RandomPumpkin", 5*60*1000, false);
 		}
 		if(egyezik(param[1], "debug"))
 		{

@@ -42210,8 +42210,19 @@ stock RandomTokAjandek(playerid)
 		}
 		case 1081..1300:
 		{
-		SendFormatMessageToAll(COLOR_LIGHTRED, "ClassRPG: %s-t kirúgták a szellemek a szerverrõl! Szegény..", PlayerName(playerid));
-		Kick(playerid);
+			if(PlayerInfo[playerid][pKaja] >= 1)
+			{
+			PlayerInfo[playerid][pKaja] = 0;
+			SendClientMessage(playerid, COLOR_WHITE, "ClassRPG: A szellemek elvették az összes kajádat.");
+			}
+			else
+			{
+			new randomkaja = random(10);
+			randomkaja = randomkaja+1;
+			PlayerInfo[playerid][pKaja] = randomkaja;
+			SendClientMessage(playerid, COLOR_WHITE, "ClassRPG: A szellemek megdobáltak kajával, amit te serényen összegyûjtöttél.");
+			SendFormatMessage(playerid, COLOR_WHITE, "ClassRPG: Most %d kajád van így.", randomkaja);
+			}
 		}
 		case 1301..1650:
 		{
@@ -42271,6 +42282,6 @@ stock RandomTokAjandek(playerid)
 		}
 		
 	}
-	SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: A következõ tököt 15 perc múlva nyithatod.");
+	SendClientMessage(playerid, COLOR_LIGHTRED, "ClassRPG: A következõ tököt 5 perc múlva nyithatod.");
 	return 1;
 }
