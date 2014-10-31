@@ -7,6 +7,7 @@ stock Torlesek() { //orem
 	// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& //
 	// REMOVEBUILDING KÓD - A szokásos formában: MI EZ - KI KÜLDTE - MIKOR RAKTAD BE
 	// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& //
+	
 
 	// O Neill birtok, pár fa - Mike O Neill - 2014.08.18
 	RemoveBuildingForPlayer(playerid, 785, -1307.2891, -1452.0547, 101.9375, 0.25);
